@@ -1,0 +1,683 @@
+<div class="container" data-ng-controller="UserRoleCtrl as URoleCtrl" ng-init="getUserRoleList()">
+    <div class="block-header p-l-0" style="margin-right: -12px;">
+        <h2><b>User Setup > User Roles</b></h2>
+
+        <ul class="actions">
+            <li>
+                <div class="form-group">
+                    <div class="fg-line">
+                        <input type="text" placeholder="Search" ng-change="getUserRoleList()" ng-model="user_role_search" class="input-sm form-control seach-module">
+                    </div>
+                </div>
+            </li>
+            <li title="Refresh" class="">
+                <a href="" data-ng-click="getUserRoleList(); clearSearchFields();"><i class="zmdi zmdi-refresh" ></i></a>
+            </li>
+            <li title="Import CSV file" class="hidden">
+                <a href="" ng-click="importSSCsv()" ><i class="zmdi zmdi-upload" ></i></a>
+                <input type="file" class="hidden" id="servicestats-select-file" accept=".csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel">
+            </li>
+        </ul>
+    </div>
+
+    <div class="card">
+        <a ng-if="userRole.access.add" title="Add New" class="btn btn-float m-btn ng-scope waves-effect waves-circle" href="" ng-click="addUserRole();" data-current-skin={{uxctrl.currentSkin}}><i class="zmdi zmdi-plus"></i></a>
+        <div class="card-body table-responsive">
+            <table ng-table="rolesTable" class="table table-display-inline table-striped table-vmiddle ">
+                <thead>
+                    <tr>
+						<th></th>
+                        <th class="">ROLE NAME</th>
+						<th class="">CREATED BY</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tbody>
+                        <tr data-ng-if="userRoleList.length==0" class="no-data-to-display">
+                            <td colspan="6">
+                                <p class="text-center m-0 p-5">No data to display</p>
+                            </td>
+                        </tr>
+                        <tr data-ng-if="userRoleList.length != 0" data-ng-repeat="data in userRoleList">
+							<td style="width:30px">
+								<ul ng-hide="data.key == 1" class="actions">
+									<li>
+										<a ng-if="userRole.access.edit" href="" ng-click="editUserRole(data)">
+											<i class='zmdi zmdi-edit'></i>
+										</a>
+									</li>
+									<li>
+										<a ng-if="userRole.access.delete" ng-click="deleteUserRoles(data.key)">
+											<i class='zmdi zmdi-delete'></i>
+										</a>
+									</li>
+								</ul>
+							</td>
+                            <td>{{ data.user_role }}</td>
+							<td>{{ data.created_by }}</td>
+							<td class="hidden">
+								<ul class="actions">
+									<li  ng-repeat="dataSub in data.sub">
+										{{ dataSub.module_name }}
+										<input type="checkbox" disabled ng-checked="dataSub.add == 1"> Add
+										<input type="checkbox" disabled ng-checked="dataSub.edit == 1" class="m-l-15"> Edit
+										<input type="checkbox" disabled ng-checked="dataSub.delete == 1" class="m-l-15"> Delete
+										<input type="checkbox" disabled ng-checked="dataSub.view == 1" class="m-l-15"> View
+									</li>
+								</ul>
+							</td>
+                        </tr>
+                   </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<script type="text/ng-template" id="addUserRoles">
+	<div class="modal-header p-b-15">
+		<i class="close zmdi zmdi-close zmdi-hc-fw" ng-click="clearFields();"></i>
+		<h2 class="text-center">ADD USER ROLES</h2>
+	</div>
+	<div id="addUserRolesModal" style="height: 500px; overflow-y: scroll;">
+	<div class="modal-body p-b-10 ">
+		<div class="col-sm-12 m-b-4">
+			<div id="recIdContainer" class="form-group m-b-15">
+				<div style="text-align:center">
+					<div class="fg-line" style="width:30%;" >
+						<label style="z-index:1024;">Role Name <span class="c-red">*</span></label>
+						
+						<input id="recId" class="form-control bgm-white p-l-10" type="text" ng-model="user.roles.name" id="id_user_role_name" maxlength="20" placeholder="eg: Administrator" name-only/>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="col-sm-12 m-b-4">
+			<table class="table table-hover w-100 m-b-20 table-vmiddle table-responsive" style="display: inline-table !important;">
+				<!-- FILES -->
+				<thead>
+					<tr>
+						<th class="p-l-10"><h4>File</h4></th>
+						<th><span></span></th>
+						<th><span></span></th>
+						<th><span></span></th>
+						<th><span></span></th>
+					</tr>
+					<tr>
+						<th width="30%"><span>MODULE</span></th>
+						<th class="p-l-25" width="17%"><span>VIEW</span></th>
+						<th class="p-l-25" width="17%"><span>DELETE</span></th>
+						<th class="p-l-25" width="17%"><span>IMPORT</span></th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr class="ng-scope" ng-repeat="filing in user.modules.filings.data">
+						<td class="ng-binding">{{ filing.module_name }}</td>
+						<td>
+							<div class="toggle-switch w-100 cursor-no-drop">
+								<div class="col-sm-6 pointer-events-off">
+									<input id="FilingView_{{filing.id}}" ng-click="roleAccessAssign(user.modules.filings, filing.id)" ng-model="user.maintenance.filings[filing.id].view" update-to-bol="" class="ng-pristine ng-untouched ng-valid" type="checkbox" hidden="hidden">
+									<label for="FilingView_{{filing.id}}" class="ts-helper"></label>
+								</div>
+							</div>
+						</td>
+						<td>
+							<div class="toggle-switch w-100 cursor-no-drop">
+								<div class="col-sm-6 pointer-events-off">
+									<input id="FilingDelete_{{filing.id}}" ng-click="roleAccessAssign(user.modules.filings, filing.id)" ng-model="user.maintenance.filings[filing.id].delete" update-to-bol="" class="ng-pristine ng-untouched ng-valid" type="checkbox" hidden="hidden" ng-disabled="!user.maintenance.filings[filing.id].view">
+									<label for="FilingDelete_{{filing.id}}" class="ts-helper"></label>
+								</div>
+							</div>
+						</td>
+						<td>
+							<div class="toggle-switch w-100 cursor-no-drop">
+								<div class="col-sm-6 pointer-events-off">
+									<input id="FilingImport_{{filing.id}}" ng-click="roleAccessAssign(user.modules.filings, filing.id)" ng-model="user.maintenance.filings[filing.id].import" update-to-bol="" class="ng-pristine ng-untouched ng-valid" type="checkbox" hidden="hidden" ng-disabled="!user.maintenance.filings[filing.id].view">
+									<label for="FilingImport_{{filing.id}}" class="ts-helper"></label>
+								</div>
+							</div>
+						</td>
+					</tr>
+				</tbody>
+
+				<!-- BILLING -->
+				<thead>
+					<tr>
+						<th class="p-l-10"><h4>Billing</h4></th>
+						<th><span></span></th>
+						<th><span></span></th>
+						<th><span></span></th>
+						<th><span></span></th>
+					</tr>
+					<tr>
+						<th width="30%"><span>MODULE</span></th>
+						<th class="p-l-25" width="17%"><span>VIEW</span></th>
+						<th class="p-l-25" width="17%"><span>EXPORT</span></th>
+					</tr>
+				</thead>
+				<tbody>
+					<!-- ngRepeat: list in lookup.modules.lending -->
+					<tr class="ng-scope" ng-repeat="billings in user.modules.billings.data">
+						<td class="ng-binding">{{ billings.module_name }}</td>
+						<td>
+							<div class="toggle-switch w-100 cursor-no-drop">
+								<div class="col-sm-6 pointer-events-off">
+									<input id="BillingView_{{billings.id}}" ng-click="roleAccessAssign(user.modules.billings, billings.id)" ng-model="user.maintenance.billings[billings.id].view" update-to-bol="" class="ng-pristine ng-untouched ng-valid" type="checkbox" hidden="hidden">
+									<label for="BillingView_{{billings.id}}" class="ts-helper cursor-no-drop-alt"></label>
+								</div>
+							</div>
+						</td>
+						<td>
+							<div class="toggle-switch w-100 cursor-no-drop">
+								<div class="col-sm-6 pointer-events-off">
+									<input id="BillingExport_{{billings.id}}" ng-click="roleAccessAssign(user.modules.billings, billings.id)" ng-model="user.maintenance.billings[billings.id].export" update-to-bol="" class="ng-pristine ng-untouched ng-valid" type="checkbox" hidden="hidden" ng-disabled="!user.maintenance.billings[billings.id].view">
+									<label for="BillingExport_{{billings.id}}" class="ts-helper cursor-no-drop-alt"></label>
+								</div>
+							</div>
+						</td>
+					</tr>
+					<!-- end ngRepeat: list in lookup.modules.lending -->
+				</tbody>
+
+				<!-- ATM -->
+				<thead>
+					<tr>
+						<th class="p-l-10"><h4>ATM</h4></th>
+						<th><span></span></th>
+						<th><span></span></th>
+						<th><span></span></th>
+						<th><span></span></th>
+					</tr>
+					<tr>
+						<th width="30%"><span>MODULE</span></th>
+						<th class="p-l-25" width="17%"><span>VIEW</span></th>
+						<th class="p-l-25" width="17%"><span>PIN</span></th>
+						<th class="p-l-25" width="17%"><span>EXPORT</span></th>
+					</tr>
+				</thead>
+				<tbody>
+					<!-- ngRepeat: list in lookup.modules.collection -->
+					<tr class="ng-scope" ng-repeat="atms in user.modules.atms.data">
+						<td class="ng-binding">{{ atms.module_name }}</td>
+						<td>
+							<div class="toggle-switch w-100">
+								<div class="col-sm-6">
+									<input id="ATMAdd_{{atms.id}}" update-to-bol="" ng-click="roleAccessAssign(user.modules.atms, atms.id)" ng-model="user.maintenance.atms[atms.id].view" class="ng-pristine ng-untouched ng-valid" type="checkbox" hidden="hidden">
+									<label for="ATMAdd_{{atms.id}}" class="ts-helper"></label>
+								</div>
+							</div>
+						</td>
+						<td>
+							<div class="toggle-switch w-100">
+								<div class="col-sm-6">
+									<input id="PinView_{{atms.id}}" update-to-bol="" ng-click="roleAccessAssign(user.modules.atms, atms.id)" ng-model="user.maintenance.atms[atms.id].pin" class="ng-pristine ng-untouched ng-valid" type="checkbox" hidden="hidden" ng-disabled="!user.maintenance.atms[atms.id].view">
+									<label for="PinView_{{atms.id}}" class="ts-helper"></label>
+								</div>
+							</div>
+						</td>
+						<td>
+							<div class="toggle-switch w-100">
+								<div class="col-sm-6">
+									<input id="ATMExport_{{atms.id}}" update-to-bol="" ng-click="roleAccessAssign(user.modules.atms, atms.id)" ng-model="user.maintenance.atms[atms.id].export" class="ng-pristine ng-untouched ng-valid" type="checkbox" hidden="hidden" ng-disabled="!user.maintenance.atms[atms.id].view">
+									<label for="ATMExport_{{atms.id}}" class="ts-helper"></label>
+								</div>
+							</div>
+						</td>
+					</tr>
+					<!-- end ngRepeat: list in lookup.modules.collection -->
+				</tbody>
+
+				<!-- SETTINGS -->
+				<thead>
+					<tr>
+						<th class="p-l-10"><h4>SETTINGS</h4></th>
+						<th><span></span></th>
+						<th><span></span></th>
+						<th><span></span></th>
+						<th><span></span></th>
+					</tr>
+					<tr>
+						<th width="30%"><span>MODULE</span></th>
+						<th class="p-l-25" width="17%"><span>VIEW</span></th>
+						<th class="p-l-25" width="17%"><span>ADD</span></th>
+						<th class="p-l-25" width="17%"><span>EDIT</span></th>
+						<th class="p-l-25" width="17%"><span>DELETE</span></th>
+					</tr>
+				</thead>
+				<tbody>
+					<!-- ngRepeat: list in lookup.modules.reports -->
+					<tr class="ng-scope" ng-repeat="settings in user.modules.settings.data">
+						<td class="ng-binding">{{ settings.module_name }}</td>
+						<td>
+							<div class="toggle-switch w-100 cursor-no-drop">
+								<div class="col-sm-6 pointer-events-off">
+									<input id="SettingsView_{{settings.id}}" update-to-bol="" ng-click="roleAccessAssign(user.modules.settings, settings.id)" ng-model="user.maintenance.settings[settings.id].view" class="ng-pristine ng-untouched ng-valid" type="checkbox" hidden="hidden">
+									<label for="SettingsView_{{settings.id}}" class="ts-helper"></label>
+								</div>
+							</div>
+						</td>
+						<td>
+							<div class="toggle-switch w-100">
+								<div class="col-sm-6">
+									<input id="SettingsAdd_{{settings.id}}" update-to-bol="" ng-click="roleAccessAssign(user.modules.settings, settings.id)" ng-model="user.maintenance.settings[settings.id].add" class="ng-pristine ng-untouched ng-valid" type="checkbox" hidden="hidden" ng-disabled="!user.maintenance.settings[settings.id].view">
+									<label for="SettingsAdd_{{settings.id}}" class="ts-helper"></label>
+								</div>
+							</div>
+						</td>
+						<td>
+							<div class="toggle-switch w-100 cursor-no-drop">
+								<div class="col-sm-6 pointer-events-off" >
+									<input id="SettingsEdit_{{settings.id}}" update-to-bol="" ng-click="roleAccessAssign(user.modules.settings, settings.id)" ng-model="user.maintenance.settings[settings.id].edit" class="ng-pristine ng-untouched ng-valid" type="checkbox" hidden="hidden" ng-disabled="!user.maintenance.settings[settings.id].view">
+									<label for="SettingsEdit_{{settings.id}}" class="ts-helper"></label>
+								</div>
+							</div>
+						</td>
+						<td>
+							<div class="toggle-switch w-100 cursor-no-drop">
+								<div class="col-sm-6 pointer-events-off">
+									<input id="SettingsDelete_{{settings.id}}" update-to-bol="" ng-click="roleAccessAssign(user.modules.settings, settings.id)" ng-model="user.maintenance.settings[settings.id].delete" class="ng-pristine ng-untouched ng-valid" type="checkbox" hidden="hidden" ng-disabled="!user.maintenance.settings[settings.id].view">
+									<label for="SettingsDelete_{{settings.id}}" class="ts-helper"></label>
+								</div>
+							</div>
+						</td>
+					</tr>
+				</tbody>
+
+				<!-- MEMBERSHIP -->
+				<thead>
+					<tr>
+						<th class="p-l-10"><h4>MEMBERSHIP</h4></th>
+						<th><span></span></th>
+						<th><span></span></th>
+						<th><span></span></th>
+						<th><span></span></th>
+					</tr>
+					<tr>
+						<th width="30%"><span>MODULE</span></th>
+						<th class="p-l-25" width="17%"><span>VIEW</span></th>
+					</tr>
+				</thead>
+				<tbody>
+					<!-- ngRepeat: list in lookup.modules.reports -->
+					<tr class="ng-scope" ng-repeat="memberships in user.modules.memberships.data">
+						<td class="ng-binding">{{ memberships.module_name }}</td>
+						<td>
+							<div class="toggle-switch w-100"  >
+								<div class="col-sm-6">
+									<input id="MembershipDelete_{{memberships.id}}" ng-click="roleAccessAssign(user.modules.memberships, memberships.id)" ng-model="user.maintenance.memberships[memberships.id].view" update-to-bol="" class="ng-pristine ng-untouched ng-valid" type="checkbox" hidden="hidden">
+									<label for="MembershipDelete_{{memberships.id}}" class="ts-helper"></label>
+								</div>
+							</div>
+						</td>
+					</tr>
+				</tbody>
+
+				<!-- User Management -->
+				<thead>
+					<tr>
+						<th class="p-l-10"><h4>USER SETUP</h4></th>
+						<th><span></span></th>
+						<th><span></span></th>
+						<th><span></span></th>
+						<th><span></span></th>
+					</tr>
+					<tr>
+						<th width="30%"><span>MODULE</span></th>
+						<th class="p-l-25" width="17%"><span>VIEW</span></th>
+						<th class="p-l-25" width="17%"><span>ADD</span></th>
+						<th class="p-l-25" width="17%"><span>EDIT</span></th>
+						<th class="p-l-25" width="17%"><span>DELETE</span></th>
+					</tr>
+				</thead>
+				<tbody>
+					<!-- ngRepeat: list in lookup.modules.reports -->
+					<tr class="ng-scope" ng-repeat="user_managements in user.modules.user_managements.data">
+						<td class="ng-binding">{{ user_managements.module_name }}</td>
+						<td>
+							<div class="toggle-switch w-100">
+								<div class="col-sm-6">
+									<input id="UserManagementView_{{user_managements.id}}" update-to-bol="" ng-click="roleAccessAssign(user.modules.user_managements, user_managements.id)" ng-model="user.maintenance.user_managements[user_managements.id].view" class="ng-pristine ng-untouched ng-valid" type="checkbox" hidden="hidden">
+									<label for="UserManagementView_{{user_managements.id}}" class="ts-helper"></label>
+								</div>
+							</div>
+						</td>
+						<td>
+							<div class="toggle-switch w-100">
+								<div class="col-sm-6">
+									<input id="UserManagementAdd_{{user_managements.id}}" update-to-bol="" ng-click="roleAccessAssign(user.modules.user_managements, user_managements.id)" ng-model="user.maintenance.user_managements[user_managements.id].add" class="ng-pristine ng-untouched ng-valid" type="checkbox" hidden="hidden" ng-disabled="!user.maintenance.user_managements[user_managements.id].view">
+									<label for="UserManagementAdd_{{user_managements.id}}" class="ts-helper"></label>
+								</div>
+							</div>
+						</td>
+						<td>
+							<div class="toggle-switch w-100">
+								<div class="col-sm-6">
+									<input id="UserManagementEdit_{{user_managements.id}}" update-to-bol="" ng-click="roleAccessAssign(user.modules.user_managements, user_managements.id)" ng-model="user.maintenance.user_managements[user_managements.id].edit" class="ng-pristine ng-untouched ng-valid" type="checkbox" hidden="hidden" ng-disabled="!user.maintenance.user_managements[user_managements.id].view">
+									<label for="UserManagementEdit_{{user_managements.id}}" class="ts-helper"></label>
+								</div>
+							</div>
+						</td>
+						<td>
+							<div class="toggle-switch w-100">
+								<div class="col-sm-6">
+									<input id="UserManagementDelete_{{user_managements.id}}" update-to-bol="" ng-click="roleAccessAssign(user.modules.user_managements, user_managements.id)" ng-click="roleAccessAssign(user.modules.memberships, memberships.id)" ng-model="user.maintenance.user_managements[user_managements.id].delete" class="ng-pristine ng-untouched ng-valid" type="checkbox" hidden="hidden" ng-disabled="!user.maintenance.user_managements[user_managements.id].view">
+									<label for="UserManagementDelete_{{user_managements.id}}" class="ts-helper"></label>
+								</div>
+							</div>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+		<div style="text-align:center">
+			<div class="row col-sm-12 m-b-4" style="margin: 0px 0px 40px 0px;">
+				<button type="button"  style="width: 100%;" class="btn btn-primary btn-block p-t-10 p-b-10" ng-click="addEditRole();">
+					ADD NEW ENTRY
+				</button>
+			</div>
+		</div>
+	</div>
+	</div>
+</script>
+
+<script type="text/ng-template" id="editUserRoles">
+	<div class="modal-header p-b-15">
+		<i class="close zmdi zmdi-close zmdi-hc-fw" ng-click="clearFields();"></i>
+		<h2 class="text-center">EDIT USER ROLES</h2>
+	</div>
+	<div id="addUserRolesModal" style="height: 500px; overflow-y: scroll;">
+	<div class="modal-body p-b-10 " ng-init="">
+		<div class="col-sm-12 m-b-4">
+			<div id="recIdContainer" class="form-group m-b-15">
+				<div style="text-align:center">
+					<div class="fg-line" style="width:30%;" >
+						<label style="z-index:1024;">Role Name <span class="c-red">*</span></label>
+						<input id="recId" class="form-control bgm-white p-l-10" type="text" ng-model="user.roles.name" id="id_user_role_name" maxlength="20" placeholder="eg: Administrator" name-only/>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="col-sm-12 m-b-4">
+			<table id="table-edit-roles" class="table table-hover w-100 m-b-20 table-vmiddle table-responsive" style="display: inline-table !important;">
+				<!-- FILES -->
+				<thead>
+					<tr>
+						<th class="p-l-10"><h4>File</h4></th>
+						<th><span></span></th>
+						<th><span></span></th>
+						<th><span></span></th>
+						<th><span></span></th>
+					</tr>
+					<tr>
+						<th width="30%"><span>MODULE</span></th>
+						<th class="p-l-25" width="17%"><span>VIEW</span></th>
+						<th class="p-l-25" width="17%"><span>DELETE</span></th>
+						<th class="p-l-25" width="17%"><span>IMPORT</span></th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr class="ng-scope" ng-repeat="filing in user.modules.filings.data">
+						<td class="ng-binding">{{ filing.module_name }}</td>
+						<td>
+							<div class="toggle-switch w-100 cursor-no-drop">
+								<div class="col-sm-6 pointer-events-off">
+									<input id="FilingView_{{filing.id}}" ng-click="roleAccessAssign(user.modules.filings, filing.id)" ng-model="user.maintenance.filings[filing.id].view" update-to-bol="" class="ng-pristine ng-untouched ng-valid" type="checkbox" hidden="hidden">
+									<label for="FilingView_{{filing.id}}" class="ts-helper"></label>
+								</div>
+							</div>
+						</td>
+						<td>
+							<div class="toggle-switch w-100 cursor-no-drop">
+								<div class="col-sm-6 pointer-events-off">
+									<input id="FilingDelete_{{filing.id}}" ng-click="roleAccessAssign(user.modules.filings, filing.id)" ng-model="user.maintenance.filings[filing.id].delete" update-to-bol="" class="ng-pristine ng-untouched ng-valid" type="checkbox" hidden="hidden">
+									<label for="FilingDelete_{{filing.id}}" class="ts-helper"></label>
+								</div>
+							</div>
+						</td>
+						<td>
+							<div class="toggle-switch w-100 cursor-no-drop">
+								<div class="col-sm-6 pointer-events-off">
+									<input id="FilingImport_{{filing.id}}" ng-click="roleAccessAssign(user.modules.filings, filing.id)" ng-model="user.maintenance.filings[filing.id].import" update-to-bol="" class="ng-pristine ng-untouched ng-valid" type="checkbox" hidden="hidden">
+									<label for="FilingImport_{{filing.id}}" class="ts-helper"></label>
+								</div>
+							</div>
+						</td>
+					</tr>
+				</tbody>
+
+				<!-- BILLING -->
+				<thead>
+					<tr>
+						<th class="p-l-10"><h4>Billing</h4></th>
+						<th><span></span></th>
+						<th><span></span></th>
+						<th><span></span></th>
+						<th><span></span></th>
+					</tr>
+					<tr>
+						<th width="30%"><span>MODULE</span></th>
+						<th class="p-l-25" width="17%"><span>VIEW</span></th>
+						<th class="p-l-25" width="17%"><span>EXPORT</span></th>
+					</tr>
+				</thead>
+				<tbody>
+					<!-- ngRepeat: list in lookup.modules.lending -->
+					<tr class="ng-scope" ng-repeat="billings in user.modules.billings.data">
+						<td class="ng-binding">{{ billings.module_name }}</td>
+						<td>
+							<div class="toggle-switch w-100 cursor-no-drop">
+								<div class="col-sm-6 pointer-events-off">
+									<input id="BillingView_{{billings.id}}" ng-click="roleAccessAssign(user.modules.billings, billings.id)" ng-model="user.maintenance.billings[billings.id].view" update-to-bol="" class="ng-pristine ng-untouched ng-valid" type="checkbox" hidden="hidden">
+									<label for="BillingView_{{billings.id}}" class="ts-helper cursor-no-drop-alt"></label>
+								</div>
+							</div>
+						</td>
+						<td>
+							<div class="toggle-switch w-100 cursor-no-drop">
+								<div class="col-sm-6 pointer-events-off">
+									<input id="BillingExport_{{billings.id}}" ng-click="roleAccessAssign(user.modules.billings, billings.id)" ng-model="user.maintenance.billings[billings.id].export" update-to-bol="" class="ng-pristine ng-untouched ng-valid" type="checkbox" hidden="hidden">
+									<label for="BillingExport_{{billings.id}}" class="ts-helper cursor-no-drop-alt"></label>
+								</div>
+							</div>
+						</td>
+					</tr>
+					<!-- end ngRepeat: list in lookup.modules.lending -->
+				</tbody>
+
+				<!-- ATM -->
+				<thead>
+					<tr>
+						<th class="p-l-10"><h4>ATM</h4></th>
+						<th><span></span></th>
+						<th><span></span></th>
+						<th><span></span></th>
+						<th><span></span></th>
+					</tr>
+					<tr>
+						<th width="30%"><span>MODULE</span></th>
+						<th class="p-l-25" width="17%"><span>VIEW</span></th>
+						<th class="p-l-25" width="17%"><span>PIN</span></th>
+						<th class="p-l-25" width="17%"><span>EXPORT</span></th>
+					</tr>
+				</thead>
+				<tbody>
+					<!-- ngRepeat: list in lookup.modules.collection -->
+					<tr class="ng-scope" ng-repeat="atms in user.modules.atms.data">
+						<td class="ng-binding">{{ atms.module_name }}</td>
+						<td>
+							<div class="toggle-switch w-100">
+								<div class="col-sm-6">
+									<input id="ATMAdd_{{atms.id}}" update-to-bol="" ng-click="roleAccessAssign(user.modules.atms, atms.id)" ng-model="user.maintenance.atms[atms.id].view" class="ng-pristine ng-untouched ng-valid" type="checkbox" hidden="hidden">
+									<label for="ATMAdd_{{atms.id}}" class="ts-helper"></label>
+								</div>
+							</div>
+						</td>
+						<td>
+							<div class="toggle-switch w-100">
+								<div class="col-sm-6">
+									<input id="PinView_{{atms.id}}" update-to-bol="" ng-click="roleAccessAssign(user.modules.atms, atms.id)" ng-model="user.maintenance.atms[atms.id].pin" class="ng-pristine ng-untouched ng-valid" type="checkbox" hidden="hidden">
+									<label for="PinView_{{atms.id}}" class="ts-helper"></label>
+								</div>
+							</div>
+						</td>
+						<td>
+							<div class="toggle-switch w-100">
+								<div class="col-sm-6">
+									<input id="ATMExport_{{atms.id}}" update-to-bol="" ng-click="roleAccessAssign(user.modules.atms, atms.id)" ng-model="user.maintenance.atms[atms.id].export" class="ng-pristine ng-untouched ng-valid" type="checkbox" hidden="hidden">
+									<label for="ATMExport_{{atms.id}}" class="ts-helper"></label>
+								</div>
+							</div>
+						</td>
+					</tr>
+					<!-- end ngRepeat: list in lookup.modules.collection -->
+				</tbody>
+
+				<!-- SETTINGS -->
+				<thead>
+					<tr>
+						<th class="p-l-10"><h4>SETTINGS</h4></th>
+						<th><span></span></th>
+						<th><span></span></th>
+						<th><span></span></th>
+						<th><span></span></th>
+					</tr>
+					<tr>
+						<th width="30%"><span>MODULE</span></th>
+						<th class="p-l-25" width="17%"><span>VIEW</span></th>
+						<th class="p-l-25" width="17%"><span>ADD</span></th>
+						<th class="p-l-25" width="17%"><span>EDIT</span></th>
+						<th class="p-l-25" width="17%"><span>DELETE</span></th>
+					</tr>
+				</thead>
+				<tbody>
+					<!-- ngRepeat: list in lookup.modules.reports -->
+					<tr class="ng-scope" ng-repeat="settings in user.modules.settings.data">
+						<td class="ng-binding">{{ settings.module_name }}</td>
+						<td>
+							<div class="toggle-switch w-100 cursor-no-drop">
+								<div class="col-sm-6 pointer-events-off">
+									<input id="SettingsView_{{settings.id}}" update-to-bol="" ng-click="roleAccessAssign(user.modules.settings, settings.id)" ng-model="user.maintenance.settings[settings.id].view" class="ng-pristine ng-untouched ng-valid" type="checkbox" hidden="hidden">
+									<label for="SettingsView_{{settings.id}}" class="ts-helper"></label>
+								</div>
+							</div>
+						</td>
+						<td>
+							<div class="toggle-switch w-100">
+								<div class="col-sm-6">
+									<input id="SettingsAdd_{{settings.id}}" update-to-bol="" ng-click="roleAccessAssign(user.modules.settings, settings.id)" ng-model="user.maintenance.settings[settings.id].add" class="ng-pristine ng-untouched ng-valid" type="checkbox" hidden="hidden">
+									<label for="SettingsAdd_{{settings.id}}" class="ts-helper"></label>
+								</div>
+							</div>
+						</td>
+						<td>
+							<div class="toggle-switch w-100 cursor-no-drop">
+								<div class="col-sm-6 pointer-events-off" >
+									<input id="SettingsEdit_{{settings.id}}" update-to-bol="" ng-click="roleAccessAssign(user.modules.settings, settings.id)" ng-model="user.maintenance.settings[settings.id].edit" class="ng-pristine ng-untouched ng-valid" type="checkbox" hidden="hidden">
+									<label for="SettingsEdit_{{settings.id}}" class="ts-helper"></label>
+								</div>
+							</div>
+						</td>
+						<td>
+							<div class="toggle-switch w-100 cursor-no-drop">
+								<div class="col-sm-6 pointer-events-off">
+									<input id="SettingsDelete_{{settings.id}}" update-to-bol="" ng-click="roleAccessAssign(user.modules.settings, settings.id)" ng-model="user.maintenance.settings[settings.id].delete" class="ng-pristine ng-untouched ng-valid" type="checkbox" hidden="hidden">
+									<label for="SettingsDelete_{{settings.id}}" class="ts-helper"></label>
+								</div>
+							</div>
+						</td>
+					</tr>
+				</tbody>
+
+				<!-- MEMBERSHIP -->
+				<thead>
+					<tr>
+						<th class="p-l-10"><h4>MEMBERSHIP</h4></th>
+						<th><span></span></th>
+						<th><span></span></th>
+						<th><span></span></th>
+						<th><span></span></th>
+					</tr>
+					<tr>
+						<th width="30%"><span>MODULE</span></th>
+						<th class="p-l-25" width="17%"><span>VIEW</span></th>
+					</tr>
+				</thead>
+				<tbody>
+					<!-- ngRepeat: list in lookup.modules.reports -->
+					<tr class="ng-scope" ng-repeat="memberships in user.modules.memberships.data">
+						<td class="ng-binding">{{ memberships.module_name }}</td>
+						<td>
+							<div class="toggle-switch w-100"  >
+								<div class="col-sm-6">
+									<input id="MembershipView_{{memberships.id}}" ng-click="roleAccessAssign(user.modules.memberships, memberships.id)" ng-model="user.maintenance.memberships[memberships.id].view" update-to-bol="" class="ng-pristine ng-untouched ng-valid" type="checkbox" hidden="hidden">
+									<label for="MembershipView_{{memberships.id}}" class="ts-helper"></label>
+								</div>
+							</div>
+						</td>
+					</tr>
+				</tbody>
+
+				<!-- User Management -->
+				<thead>
+					<tr>
+						<th class="p-l-10"><h4>USER MANAGEMENT</h4></th>
+						<th><span></span></th>
+						<th><span></span></th>
+						<th><span></span></th>
+						<th><span></span></th>
+					</tr>
+					<tr>
+						<th width="30%"><span>MODULE</span></th>
+						<th class="p-l-25" width="17%"><span>VIEW</span></th>
+						<th class="p-l-25" width="17%"><span>ADD</span></th>
+						<th class="p-l-25" width="17%"><span>EDIT</span></th>
+						<th class="p-l-25" width="17%"><span>DELETE</span></th>
+					</tr>
+				</thead>
+				<tbody>
+					<!-- ngRepeat: list in lookup.modules.reports -->
+					<tr class="ng-scope" ng-repeat="user_managements in user.modules.user_managements.data">
+						<td class="ng-binding">{{ user_managements.module_name }}</td>
+						<td>
+							<div class="toggle-switch w-100">
+								<div class="col-sm-6">
+									<input id="UserManagementView_{{user_managements.id}}" update-to-bol="" ng-click="roleAccessAssign(user.modules.user_managements, user_managements.id)" ng-model="user.maintenance.user_managements[user_managements.id].view" class="ng-pristine ng-untouched ng-valid" type="checkbox" hidden="hidden">
+									<label for="UserManagementView_{{user_managements.id}}" class="ts-helper"></label>
+								</div>
+							</div>
+						</td>
+						<td>
+							<div class="toggle-switch w-100">
+								<div class="col-sm-6">
+									<input id="UserManagementAdd_{{user_managements.id}}" update-to-bol="" ng-click="roleAccessAssign(user.modules.user_managements, user_managements.id)" ng-model="user.maintenance.user_managements[user_managements.id].add" class="ng-pristine ng-untouched ng-valid" type="checkbox" hidden="hidden">
+									<label for="UserManagementAdd_{{user_managements.id}}" class="ts-helper"></label>
+								</div>
+							</div>
+						</td>
+						<td>
+							<div class="toggle-switch w-100">
+								<div class="col-sm-6">
+									<input id="UserManagementEdit_{{user_managements.id}}" update-to-bol="" ng-click="roleAccessAssign(user.modules.user_managements, user_managements.id)" ng-model="user.maintenance.user_managements[user_managements.id].edit" class="ng-pristine ng-untouched ng-valid" type="checkbox" hidden="hidden">
+									<label for="UserManagementEdit_{{user_managements.id}}" class="ts-helper"></label>
+								</div>
+							</div>
+						</td>
+						<td>
+							<div class="toggle-switch w-100">
+								<div class="col-sm-6">
+									<input id="UserManagementDelete_{{user_managements.id}}" update-to-bol="" ng-click="roleAccessAssign(user.modules.user_managements, user_managements.id)" ng-click="roleAccessAssign(user.modules.memberships, memberships.id)" ng-model="user.maintenance.user_managements[user_managements.id].delete" class="ng-pristine ng-untouched ng-valid" type="checkbox" hidden="hidden">
+									<label for="UserManagementDelete_{{user_managements.id}}" class="ts-helper"></label>
+								</div>
+							</div>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+		<div class="row col-sm-12 m-b-4" style="margin: 0px 0px 40px 0px;">
+			<button type="button" style="width: 100%;" class="btn btn-primary btn-block p-t-10 p-b-10" ng-click="addEditRole();">
+				UPDATE ENTRY
+			</button>
+		</div>
+	</div>
+	</div>
+</script>

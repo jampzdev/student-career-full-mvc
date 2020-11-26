@@ -1,0 +1,275 @@
+
+<div class="container" data-ng-controller="UserCtrl as uCtrl" ng-init="getUsers()">
+    <div class="block-header p-l-0" style="margin-right: -12px;">
+        <h2><b>User Setup > User</b></h2>
+
+        <ul class="actions">
+            <li>
+                <div class="form-group">
+                    <div class="fg-line">
+                        <input type="text" placeholder="Search" ng-change="getUsers()" ng-model="users_search" class="input-sm form-control seach-module" maxlength="50">
+                    </div>
+                </div>
+            </li>
+            <li title="Refresh">
+                <a href="" data-ng-click="clearSearch(); getUsers(); "><i class="zmdi zmdi-refresh" ></i></a>
+            </li>
+        </ul>
+    </div>
+
+    <div class="card">
+        <a ng-if="userRole.access.add" title="Add New" class="btn btn-float m-btn ng-scope waves-effect waves-circle" href="" ng-click="addUserForm(); getUserRolesDropdown();" data-current-skin={{uxctrl.currentSkin}}><i class="zmdi zmdi-plus"></i></a>
+        <div class="card-body table-responsive">
+            <table ng-table="usersTable" class="table table-display-inline table-striped table-vmiddle">
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th> USER ROLE </th>
+                        <th> COMPLETE NAME </th>
+                        <th> USER NAME </th>
+                        <!-- <th> EMAIL ADDRESS </th> -->
+                    </tr>
+                </thead>
+                <!-- <tr ng-repeat="list in users | orderBy: 'complete_name'"> -->
+                <tr ng-repeat="list in users">
+                    <td width="10%">
+                        <div class="p-t-5" ng-style="{width : '80px'}">
+                            <span>
+                                <ul class="actions" data-ng-if="!list.$edit">
+                                    <li>
+                                        <!-- <a title="Edit" data-ng-click="onEditSpecific(list);"> -->
+                                        <a ng-if="userRole.access.edit" title="Edit" data-ng-click="editUserForm(list.id); getUserRolesDropdown();">
+                                            <i class="zmdi zmdi-edit"></i>
+                                        </a>
+                                        <a ng-if="userRole.access.delete" title="Delete" data-ng-click="onDeleteUser(list.id)">
+                                            <i class="zmdi zmdi-delete"></i>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </span>
+                        </div>
+
+                    </td>
+
+                    <td ng-click="editUserForm(list.id); getUserRolesDropdown();">
+                        <div class="p-t-2" ng-style="{width:'100%'}">
+                            {{ list.user_role }}
+                        </div>
+                    </td>
+
+                    <!-- <td>{{list.complete_name}}</td> -->
+                    <td ng-click="editUserForm(list.id); getUserRolesDropdown();" width="32%">
+                        <div class="p-t-2" ng-style="{width:'100%'}">
+                            <!-- <a ng-click="editUserForm(list.id);" style="color: black !important"> -->
+                                {{ list.complete_name }}
+                            <!-- </a> -->
+                        </div>
+                    </td>
+
+                    <!-- <td>{{list.email_address}}</td> -->
+                    <td ng-click="editUserForm(list.id); getUserRolesDropdown();" width="32%">
+                        <div class="p-t-2" ng-style="{width:'100%'}">
+                            {{ list.email_address }}
+                        </div>
+                    </td>
+                </tr>
+                <tr ng-if="users.length == 0">
+                    <td colspan="4">No record(s) found.</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+    <!-- Add User Form -->
+    <script type="text/ng-template" id="addUserForm">
+        <div class="modal-header p-b-15">
+            <i class="close zmdi zmdi-close zmdi-hc-fw" ng-click="clearFields();"></i>
+            <h2 class="text-center">ADD USER</h2>
+        </div>
+        <div class="modal-body p-b-0 " style="padding:0 25% 0; height:auto;">
+            <div class="row p-l-25" style="width:100%">
+                <div class="form-group p-l-15" style="width:100%">
+                    All fields with <span class="c-red">*</span> are required
+                </div>
+                <div class="col-sm-6 m-b-10">
+                    <div class="form-group m-b-5">
+                        <div id="completeNameContainer" class="fg-line">
+                            <label style="z-index:1024;">Complete Name
+                                <span class="c-red">*</span>
+                            </label>
+                             <input id="completeName" class="form-control bgm-white p-l-5" type="text" ng-model="form.complete_name" maxlength="50" placeholder="eg: Juan Dela Cruz" name-only
+                             />
+                        </div>
+                    </div>
+                </div>
+                <!-- <div class="col-sm-6 m-b-10">
+                    <div class="form-group m-b-5">
+                        <div id="emailAddressContainer" class="fg-line">
+                            <label style="z-index:1024;">Email Address
+                                <span class="c-red">*</span>
+                            </label>
+                             <input id="emailAddress" class="form-control bgm-white p-l-10" type="text" ng-model="form.email_address" ng-pattern="/^[_a-z0-9]+(\.[_a-z0-9]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,4})$/" maxlength="50" placeholder="eg: jdelacruz@gmail.com"
+                             />
+                        </div>
+                    </div>
+                </div> -->
+                <div class="col-sm-6 m-b-10">
+                    <div class="form-group m-b-5">
+                        <div id="userNameContainer" class="fg-line">
+                            <label style="z-index:1024;">User Name
+                                <span class="c-red">*</span>
+                            </label>
+                             <input id="userName" class="form-control bgm-white p-l-5" type="text" ng-model="form.user_name" maxlength="50" placeholder="eg: JDelacruz" name-only
+                             />
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row p-l-25" style="width:100%">
+                <div class="col-sm-6 m-b-10">
+                   <div class="form-group m-b-5">
+                       <div id="passwordContainer" class="fg-line">
+                           <label style="z-index:1024;">Password
+                               <span class="c-red">*</span>
+                           </label>
+                            <input id="password" class="form-control bgm-white p-l-10" type="password" ng-model="form.password" placeholder="New Password"
+                            />
+                       </div>
+                   </div>
+               </div>
+               <div class="col-sm-6 m-b-10">
+                   <div class="form-group m-b-5">
+                       <div id="confirmPasswordContainer" class="fg-line">
+                           <label style="z-index:1024;">Confirm Password
+                               <span class="c-red">*</span>
+                           </label>
+                            <input id="confirmPassword" class="form-control bgm-white p-l-10" type="password" ng-model="form.confirm_password" placeholder="Confirm Password"
+                            />
+                       </div>
+                   </div>
+               </div>
+           </div>
+           <div class="row p-l-25" style="width:100%">
+               <div class="col-sm-6 m-b-10">
+                  <div class="form-group m-b-5">
+                      <div id="userRoleContainer" class="fg-line">
+                          <label style="z-index:1024;">User Role
+                              <span class="c-red">*</span>
+                          </label></br>
+                           <!-- <select id="userRole" name="user_role" class="form-control bgm-white" ng-model="form.user_role" >
+                               <option value="" disabled selected> - Select user role -</option>
+                               <option value="u">Admin</option>
+                               <option value="a">Collector</option>
+                           </select> -->
+                           <select id="userRole" name="user_role" class="form-control bgm-white p-l-10" ng-model="form.user_role" >
+                                 <option value="" disabled selected>- Select user role -</option>
+                                 <option ng-repeat="roles in userRoles" value="{{roles.user_role_id}}">{{roles.user_role}}</option>
+                           </select>
+                      </div>
+                  </div>
+              </div>
+              <div class="p-l-25 row">
+                <!-- <button type="button" style="width: 100%;" class="btn btn-primary btn-block p-t-10 p-b-10" ng-click="onUpdateUser(list,$index);"> -->
+                <div class="col-sm-12 m-b-10 p-5">
+                    <button type="button" style="width: 98%;" class="btn btn-primary btn-block p-t-10 p-b-10" ng-click="addNewUser();">
+                        Add Entry
+                    </button>
+                </div>
+             </div>
+        </div>
+        <div class="modal-footer p-t-0 p-l-25 p-r-30">
+
+        </div>
+    </script>
+
+
+    <!-- Edit User Form -->
+    <script type="text/ng-template" id="editUserForm">
+        <div class="modal-header p-b-15">
+            <i class="close zmdi zmdi-close zmdi-hc-fw" ng-click="clearFields();"></i>
+            <h2 class="text-center">EDIT USER</h2>
+        </div>
+        <div class="modal-body p-b-0 " style="padding:0 25% 0; height:auto;">
+            <div class="row p-l-25" style="width:100%">
+                 <div class="form-group p-l-15" style="width:100%">
+                     All fields with <span class="c-red">*</span> are required
+                 </div>
+                 <div class="col-sm-6 m-b-10">
+                    <div class="form-group m-b-5">
+                        <div id="completeNameContainer" class="fg-line">
+                            <label style="z-index:1024;">Complete Name
+                                <span class="c-red">*</span>
+                            </label>
+                             <input id="completeName" class="form-control bgm-white p-l-5" type="text" ng-model="form.complete_name" maxlength="50" placeholder="eg: Juan Dela Cruz" name-only
+                             />
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 m-b-10">
+                    <div class="form-group m-b-5">
+                        <div id="emailAddressContainer" class="fg-line">
+                            <label style="z-index:1024;">User Name
+                                <span class="c-red">*</span>
+                            </label>
+                             <input id="emailAddress" class="form-control bgm-white p-l-10" type="text" ng-model="form.email_address" maxlength="50" placeholder="eg: JDelacruz" 
+                             />
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row p-l-25" style="width:100%">
+                <div class="col-sm-6 m-b-10">
+                   <div class="form-group m-b-5">
+                       <div id="passwordContainer" class="fg-line">
+                           <label style="z-index:1024;">Password
+                               <span class="c-red">*</span>
+                           </label>
+                            <input id="password" class="form-control bgm-white p-l-10" type="password" ng-model="form.password" maxlength="30" placeholder="New Password"
+                            />
+                       </div>
+                   </div>
+               </div>
+               <div class="col-sm-6 m-b-10">
+                   <div class="form-group m-b-5">
+                       <div id="confirmPasswordContainer" class="fg-line">
+                           <label style="z-index:1024;">Confirm Password
+                               <span class="c-red">*</span>
+                           </label>
+                            <input id="confirmPassword" class="form-control bgm-white p-l-10" type="password" ng-model="form.confirm_password" maxlength="30" placeholder="Confirm Password"
+                            />
+                       </div>
+                   </div>
+               </div>
+           </div>
+           <div class="row p-l-25" style="width:100%">
+               <div class="col-sm-6 m-b-10">
+                  <div class="form-group m-b-5">
+                      <div id="userRoleContainer" class="fg-line">
+                          <label style="z-index:1024;">User Role
+                              <span class="c-red">*</span>
+                          </label></br>
+                           <!-- <input id="password" class="form-control bgm-white" type="text" ng-model="form.list.password" maxlength="20" placeholder=""
+                           /> -->
+                           <!-- <select id="userRole" name="user_role" class="form-control bgm-white" ng-model="form.user_role" >
+                                 <option value="" disabled selected>- Select user role -</option>
+                                 <option value="u">Admin</option>
+                                 <option value="a">Collector</option>
+                           </select> -->
+                           <select id="userRole" name="user_role" class="form-control bgm-white p-l-10" ng-model="form.user_role_update">
+                                 <option value="" disabled selected>- Select user role -</option>
+                                 <option ng-repeat="roles in userRoles" value="{{roles.user_role_id}}">{{roles.user_role}}</option>
+                           </select>
+                      </div>
+                  </div>
+              </div>
+        </div>
+        <div class="p-l-25 row">
+            <!-- <button type="button" style="width: 100%;" class="btn btn-primary btn-block p-t-10 p-b-10" ng-click="onUpdateUser(list,$index);"> -->
+            <div class="col-sm-12 m-b-10">
+                <button type="button" style="width: 98%;" class="btn btn-primary btn-block p-t-10 p-b-10" ng-click="updateUserData();">
+                    Update
+                </button>
+            </div>
+        </div>
+    </script>
+</div>

@@ -1,0 +1,23 @@
+<div class="loginDialog">
+    <div class="modal-body p-b-15 container-center text-center">
+        <form name="loginForm"  ng-submit="LoginModalCtrl.submit(login_form_username, login_form_password)" novalidate angular-validator
+                class="lc-block toggled">
+            <div class="input-group m-b-20">
+                <span class="input-group-addon"><i class="zmdi zmdi-account"></i></span>
+                <div class="fg-line">
+                    <input type="text" class="form-control ng-pristine ng-invalid ng-invalid-required  ng-touched" placeholder="Username" ng-model="login_form_username" name="email_address" invalid-message="'Please input valid username.'" required-message="'Username is required'" validate-on="dirty" required="" autofocus="" maxlength="250">
+                    <!-- <input type="email" class="form-control ng-pristine ng-invalid ng-invalid-required ng-valid-email ng-touched" placeholder="Email Address" ng-model="login_form_username" name="email_address" invalid-message="'Please input valid username.'" required-message="'Email address is required'" validate-on="dirty" required="" autofocus="" maxlength="250"> -->
+                </div>
+            </div>
+            <div class="input-group m-b-20">
+                <span class="input-group-addon"><i class="zmdi zmdi-male"></i></span>
+                <div class="fg-line">
+                    <input type="password" class="form-control ng-pristine ng-invalid ng-invalid-required ng-touched" placeholder="Password" name="login.password" ng-model="login_form_password" required-message="'Password is required'" validate-on="dirty" required="" maxlength="16">
+                </div>
+            </div>
+            <div class="clearfix"></div>
+            <div class="text-center" style="color: #F44336;">{{login_invalid}}</div>
+            <button type="submit" ng-disabled="login_form_username == null || login_form_password == null" class="btn btn-login btn-danger btn-float" title="Login"><i class="zmdi zmdi-arrow-forward"></i></button>
+        </form>
+    </div>
+</div>

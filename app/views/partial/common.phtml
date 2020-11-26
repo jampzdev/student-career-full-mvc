@@ -1,0 +1,8 @@
+<header id="header" data-current-skin={{uxctrl.currentSkin}}  data-ng-include="'<?php echo $this->baseurl.'/partial/header';?>'" data-ng-controller="headerCtrl as hctrl"></header>
+<section id="main">
+    <aside id="sidebar" data-ng-include="'<?php echo $this->baseurl.'/partial/mainmenu';?>'" data-ng-class="{ 'toggled': uxctrl.sidebarToggle.left === true }"></aside>
+    <section id="content" class="page-view" data-ui-view></section>
+    <input type="hidden" id="form_token" name="<?php echo $token['token_key'] ?>"
+        value="<?php echo $token['token_value'] ?>" ng-model="form.token"/>
+</section>
+<footer id="footer" data-ng-include="'<?php echo $this->baseurl.'/partial/footer';?>'"></footer>
