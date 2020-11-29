@@ -1,13 +1,15 @@
 <?php
 
-class TblInventory extends \Phalcon\Mvc\Model
+class CoursesTbl extends \Phalcon\Mvc\Model
 {
+
+
+
     /**
      * Initialize method for model.
      */
     public function initialize()
     {
- 
     }
 
     /**
@@ -17,14 +19,14 @@ class TblInventory extends \Phalcon\Mvc\Model
      */
     public function getSource()
     {
-        return 'tbl_inventory';
+        return 'courses_tbl';
     }
 
     /**
      * Allows to query a set of records that match the specified conditions
      *
      * @param mixed $parameters
-     * @return TblInventory[]
+     * @return CoursesTbl[]
      */
     public static function find($parameters = null)
     {
@@ -35,7 +37,7 @@ class TblInventory extends \Phalcon\Mvc\Model
      * Allows to query the first record that match the specified conditions
      *
      * @param mixed $parameters
-     * @return TblInventory
+     * @return CoursesTbl
      */
     public static function findFirst($parameters = null)
     {

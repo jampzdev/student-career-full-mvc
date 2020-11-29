@@ -1,6 +1,6 @@
 <?php
 
-class TblModules extends \Phalcon\Mvc\Model
+class SemesterTbl extends \Phalcon\Mvc\Model
 {
 
 
@@ -19,14 +19,14 @@ class TblModules extends \Phalcon\Mvc\Model
      */
     public function getSource()
     {
-        return 'tbl_modules';
+        return 'semester_tbl';
     }
 
     /**
      * Allows to query a set of records that match the specified conditions
      *
      * @param mixed $parameters
-     * @return TblModules[]
+     * @return SemesterTbl[]
      */
     public static function find($parameters = null)
     {
@@ -37,7 +37,7 @@ class TblModules extends \Phalcon\Mvc\Model
      * Allows to query the first record that match the specified conditions
      *
      * @param mixed $parameters
-     * @return TblModules
+     * @return SemesterTbl
      */
     public static function findFirst($parameters = null)
     {

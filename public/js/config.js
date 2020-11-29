@@ -168,11 +168,11 @@ psslai
             }
         })
 
-        .state ('settings.category', {
-            url: '/category',
-            title: 'Category',
+        .state ('settings.student', {
+            url: '/student',
+            title: 'Student',
             auth : true,
-            templateUrl: baseUrl +'/settings/category',
+            templateUrl: baseUrl +'/settings/student',
             resolve: {
                 loadPlugin: function($ocLazyLoad) {
 
@@ -180,88 +180,67 @@ psslai
             }
         })
 
-        .state ('settings.brand', {
-            url: '/brand',
-            title: 'Brand',
-            auth : true,
-            templateUrl: baseUrl +'/settings/brand',
+        .state('settings.career', {
+            url: '/career',
+            title: 'Career',
+            auth: true,
+            templateUrl: baseUrl + '/settings/career',
             resolve: {
-                loadPlugin: function($ocLazyLoad) {
-
-                }
-            }
-        })
-
-        .state ('settings.customer', {
-            url: '/customer',
-            title: 'Customer',
-            auth : true,
-            templateUrl: baseUrl +'/settings/customer',
-            resolve: {
-                loadPlugin: function($ocLazyLoad) {
+                loadPlugin: function ($ocLazyLoad) {
 
                 }
             }
         })
 
 
-        .state ('settings.unit', {
-            url: '/unit',
-            title: 'Unit',
-            auth : true,
-            templateUrl: baseUrl +'/settings/unit',
+        .state('career', {
+            url: '/career',
+            title: 'career',
+            auth: true,
+            templateUrl: baseUrl + '/partial/common',
             resolve: {
-                loadPlugin: function($ocLazyLoad) {
+                loadPlugin: function ($ocLazyLoad) {
 
                 }
             }
         })
 
-        .state ('inventory', {
-            url: '/inventory',
-            title: 'Inventory',
-            auth : true,
-            templateUrl: baseUrl +'/partial/common',
-            resolve: {
-                loadPlugin: function($ocLazyLoad) {
-
-                }
-            }
-        })
-
-        .state ('inventory.list', {
+        .state('career.list', {
             url: '/list',
-            title: 'Inventory List',
-            auth : true,
-            templateUrl: baseUrl +'/inventory/list',
+            title: 'Career',
+            auth: true,
+            templateUrl: baseUrl + '/career/list',
             resolve: {
-                loadPlugin: function($ocLazyLoad) {
+                loadPlugin: function ($ocLazyLoad) {
 
                 }
             }
         })
 
-        .state ('transaction', {
-            url: '/transaction',
-            title: 'Transaction',
-            auth : true,
-            templateUrl: baseUrl +'/partial/common',
+
+
+        .state('student-home', {
+            url: '/student-home',
+            title: 'Student Home',
+            auth: true,
+            templateUrl: baseUrl + '/partial/common',
             resolve: {
-                loadPlugin: function($ocLazyLoad) {
+                loadPlugin: function ($ocLazyLoad) {
 
                 }
             }
         })
 
-        .state ('transaction.pos', {
-            url: '/pos',
-            title: 'POS',
-            auth : true,
-            templateUrl: baseUrl +'/transaction/pos',
+        .state('student-home.index', {
+            url: '/list',
+            title: 'Career',
+            auth: true,
+            templateUrl: baseUrl + '/student/home',
             resolve: {
-                loadPlugin: function($ocLazyLoad) {
+                loadPlugin: function ($ocLazyLoad) {
 
                 }
             }
         })
+
     });

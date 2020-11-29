@@ -4,10 +4,24 @@
         <li><a data-ui-sref-active="" data-ui-sref="home" data-ng-click="toggleChildAccordion($event);" data-current-skin="{{ sideMenu.child == 'home' ? skin : '' }}"><i class="zmdi zmdi-home"></i> DASHBOARD</a></li>
         <li><a data-ui-sref-active="" data-ui-sref="inventory.list" data-ng-click="toggleChildAccordion($event);" data-current-skin="{{ sideMenu.child == 'inventory' ? skin : '' }}"><i class="zmdi zmdi-format-list-bulleted"></i> INVENTORY</a></li>
         
-        <li ng-if="userRole.access.view" class="sub-menu" data-ng-class="{ 'active toggled': uxctrl.$state.includes('users') || sideMenu.parent == 'user_setup' }" ng-click="toggleAccordion($event);">
+        <li class="sub-menu" data-ng-class="{ 'active toggled': uxctrl.$state.includes('users') || sideMenu.parent == 'user_setup' }" ng-click="toggleAccordion($event);">
             <a href="" toggle-submenu><i class="zmdi zmdi-accounts-alt"></i>USER SETUP</a>
             <ul>
                 <li><a data-ui-sref-active="" data-ui-sref="users.users" data-ng-click="toggleChildAccordion($event);" data-current-skin="{{ sideMenu.child == 'user' ? skin : '' }}"><i class="zmdi zmdi-case"></i> User</a></li>
+            </ul>
+        </li>
+
+        <li class="sub-menu" data-ng-class="{ 'active toggled': uxctrl.$state.includes('users') || sideMenu.parent == 'settings' }" ng-click="toggleAccordion($event);">
+            <a href="" toggle-submenu><i class="zmdi zmdi-accounts-alt"></i>SETTING</a>
+            <ul>
+                <li><a data-ui-sref-active="" data-ui-sref="settings.student" data-ng-click="toggleChildAccordion($event);" data-current-skin="{{ sideMenu.child == 'user' ? skin : '' }}"><i class="zmdi zmdi-case"></i> Student</a></li>
+            </ul>
+        </li>
+
+        <li class="sub-menu" data-ng-class="{ 'active toggled': uxctrl.$state.includes('users') || sideMenu.parent == 'settings' }" ng-click="toggleAccordion($event);">
+            <a href="" toggle-submenu><i class="zmdi zmdi-accounts-alt"></i>CAREER</a>
+            <ul>
+                <li><a data-ui-sref-active="" data-ui-sref="career.list" data-ng-click="toggleChildAccordion($event);" data-current-skin="{{ sideMenu.child == 'user' ? skin : '' }}"><i class="zmdi zmdi-case"></i> List?</a></li>
             </ul>
         </li>
     </ul>

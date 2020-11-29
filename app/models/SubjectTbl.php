@@ -1,17 +1,13 @@
 <?php
 
-class TblHeadModules extends \Phalcon\Mvc\Model
+class SubjectTbl extends \Phalcon\Mvc\Model
 {
 
-
-    public $id;
-    public $module_code;
-    public $module_name;
-    public $status;
-
+    /**
+     * Initialize method for model.
+     */
     public function initialize()
     {
-        $this->hasMany('id', 'TblModules', 'head_module_id', array('alias' => 'Modules'));
     }
 
     /**
@@ -21,14 +17,14 @@ class TblHeadModules extends \Phalcon\Mvc\Model
      */
     public function getSource()
     {
-        return 'tbl_head_modules';
+        return 'subject_tbl';
     }
 
     /**
      * Allows to query a set of records that match the specified conditions
      *
      * @param mixed $parameters
-     * @return TblModules[]
+     * @return SubjectTbl[]
      */
     public static function find($parameters = null)
     {
@@ -39,7 +35,7 @@ class TblHeadModules extends \Phalcon\Mvc\Model
      * Allows to query the first record that match the specified conditions
      *
      * @param mixed $parameters
-     * @return TblModules
+     * @return SubjectTbl
      */
     public static function findFirst($parameters = null)
     {

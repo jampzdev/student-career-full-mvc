@@ -520,6 +520,10 @@ psslai
             link.click();
         }
 
+        $scope.checkUserLoggedInRole = function(){
+            
+        }
+
     }])
 
 
@@ -580,20 +584,21 @@ psslai
     }])
 
     .controller('LoginModalCtrl', ['$scope','$rootScope','$window','$state', '$http', 'growlService',function ($scope,$rootScope,$window,$state, $http, growlService) {
+        $scope.isLoginAsStudent = false;
 
-      this.cancel = $scope.$dismiss;
+        this.cancel = $scope.$dismiss;
 
-      this.submit = function (username,password) {
-          // if (username == null || password == null) {
-          //     swal({
-          //                 title: "Please enter valid Email Address and Password",
-          //                 type: "warning",
-          //                 confirmButtonClass: "btn-success",
-          //                 confirmButtonText: "OK",
-          //                 closeOnConfirm: true
-          //         });
-          //     return;
-          // }
+        this.submit = function (username,password) {
+            // if (username == null || password == null) {
+            //     swal({
+            //                 title: "Please enter valid Email Address and Password",
+            //                 type: "warning",
+            //                 confirmButtonClass: "btn-success",
+            //                 confirmButtonText: "OK",
+            //                 closeOnConfirm: true
+            //         });
+            //     return;
+            // }
 
         var token = $rootScope.getToken();
 
@@ -602,23 +607,58 @@ psslai
             url: baseUrl + '/index/auth',
             headers: {'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'},
             data : {
-              username              : username,
-              password              : password,
-              token_key             : token.name,
-              token_value           : token.value
+                username              : username,
+                password              : password,
+                token_key             : token.name,
+                token_value           : token.value
             }
         }).then(function successCallback(response){
-             if(response.data.error_code == 0){
-                 localStorage.setItem('ma-layout-status', 1);
-                 $scope.$close(response.data.devMessage);
-             }else{
-                  $scope.login_invalid = response.data.msg;
-             }
+                if(response.data.error_code == 0){
+                    localStorage.setItem('ma-layout-status', 1);
+                    $scope.$close(response.data.devMessage);
+                }else{
+                    $scope.login_invalid = response.data.msg;
+                }
         },function errorCallback(response){
-           growlService.growl(response.statusText,'danger');
+            growlService.growl(response.statusText,'danger');
         });
 
-      };
+        };
+
+        $scope.switchLoginMode = function(){
+            if ($scope.isLoginAsStudent == false){
+                $scope.isLoginAsStudent = true;
+            }
+            else {
+                $scope.isLoginAsStudent = false;
+            }
+        }
+
+        this.submitStudentForm = function(student_no){
+
+            var token = $rootScope.getToken();
+
+            $http({
+                method: 'POST',
+                url: baseUrl + '/index/authStudent',
+                headers: { 'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8' },
+                data: {
+                    student_no  : student_no,
+                    token_key   : token.name,
+                    token_value : token.value
+                }
+            }).then(function successCallback(response) {
+                if (response.data.error_code == 0) {
+                    localStorage.setItem('ma-layout-status', 1);
+                    $scope.$close(response.data.devMessage);
+                } else {
+                    $scope.login_invalid_student = response.data.msg;
+                }
+            }, function errorCallback(response) {
+                growlService.growl(response.statusText, 'danger');
+            });
+        }
+
 
     }])
 

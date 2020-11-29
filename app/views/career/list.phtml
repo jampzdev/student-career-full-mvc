@@ -1,0 +1,83 @@
+
+<div class="container" data-ng-controller="CareerCtrl as cCtrl" ng-init="test()">
+    <div class="block-header p-l-0" style="margin-right: -12px;">
+        <h2><b>Settings > Students</b></h2>
+
+        <ul class="actions">
+            <li>
+                <div class="form-group">
+                    <div class="fg-line">
+
+                </div>
+                </div>
+            </li>
+            <li title="Refresh">
+
+        </li>
+        </ul>
+    </div>
+
+    <div class="card">
+
+        <div class="card-body table-responsive">
+            <table ng-table="usersTable" class="table table-display-inline table-striped table-vmiddle">
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th> USER ROLE </th>
+                        <th> COMPLETE NAME </th>
+                        <th> USER NAME </th>
+                        <!-- <th> EMAIL ADDRESS </th> -->
+                    </tr>
+                </thead>
+                <!-- <tr ng-repeat="list in users | orderBy: 'complete_name'"> -->
+                <tr ng-repeat="list in users">
+                    <td width="10%">
+                        <div class="p-t-5" ng-style="{width : '80px'}">
+                            <span>
+                                <ul class="actions" data-ng-if="!list.$edit">
+                                    <li>
+                                        <!-- <a title="Edit" data-ng-click="onEditSpecific(list);"> -->
+                                        <a ng-if="userRole.access.edit" title="Edit" data-ng-click="editUserForm(list.id); getUserRolesDropdown();">
+                                            <i class="zmdi zmdi-edit"></i>
+                                        </a>
+                                        <a ng-if="userRole.access.delete" title="Delete" data-ng-click="onDeleteUser(list.id)">
+                                            <i class="zmdi zmdi-delete"></i>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </span>
+                        </div>
+
+                    </td>
+
+                    <td ng-click="editUserForm(list.id); getUserRolesDropdown();">
+                        <div class="p-t-2" ng-style="{width:'100%'}">
+                            {{ list.user_role }}
+                        </div>
+                    </td>
+
+                    <!-- <td>{{list.complete_name}}</td> -->
+                    <td ng-click="editUserForm(list.id); getUserRolesDropdown();" width="32%">
+                        <div class="p-t-2" ng-style="{width:'100%'}">
+                            <!-- <a ng-click="editUserForm(list.id);" style="color: black !important"> -->
+                                {{ list.complete_name }}
+                            <!-- </a> -->
+                        </div>
+                    </td>
+
+                    <!-- <td>{{list.email_address}}</td> -->
+                    <td ng-click="editUserForm(list.id); getUserRolesDropdown();" width="32%">
+                        <div class="p-t-2" ng-style="{width:'100%'}">
+                            {{ list.email_address }}
+                        </div>
+                    </td>
+                </tr>
+                <tr ng-if="users.length == 0">
+                    <td colspan="4">No record(s) found.</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+</div>

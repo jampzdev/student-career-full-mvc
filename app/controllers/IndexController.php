@@ -95,6 +95,57 @@ class IndexController extends ControllerBase
         }
     }
 
+    public function authStudentAction(){
+        $this->view->disable();
+
+        $post = $this->request->getJsonRawBody();
+        if(!$post){
+          $this->_respondInvalid(2);
+        }
+
+        $sql   =  StudentTbl::findFirst(array(
+                "conditions" => "student_no = ?1",
+                "bind"       => array(1 => $post->student_no)
+        ));
+
+
+        if($sql){
+            $token = bin2hex(mcrypt_create_iv(35, MCRYPT_DEV_URANDOM));
+            $user_token                     = new TblToken();
+            $user_token->user_id            = $sql->id;
+            $user_token->token              = $token;
+            $user_token->datetime_created   = $this->_getDateTime();
+            $user_token->create();
+            $this->session->set('auth-psslai', array(
+                'user_type' =>  "student"
+            ));
+
+            $info [] = array(
+                "key"                   => $sql->id,
+                "student_no"            => $sql->student_no,
+                "lname"                 => $sql->lname,
+                "fname"                 => $sql->fname,
+                "mname"                 => $sql->mname,
+                "course"                => $sql->course,
+                "yearlvl"               => $sql->yearlvl,
+                "section"               => $sql->section,
+                "student_status"        => $sql->student_status,
+                "address"               => $sql->address,
+                "contactno"             => $sql->contactno,
+                "birthplace"            => $sql->birthplace
+            );
+            
+        }
+
+        $this->_respond(array(
+            'user_id'                   =>  $sql->id,
+            'token'                     =>  $token,
+            'student_no'                =>  $sql->student_no,
+            'user_complete_name'        =>  $sql->lname . ", ".$sql->fname. " ".$sql->mname,
+            'user_role'                 =>  "student",
+        ));
+    }
+
     public function outAction(){
         $this->view->disable();
         if ($this->request->isGet()){

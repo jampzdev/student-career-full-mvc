@@ -1,13 +1,15 @@
 <?php
 
-class TblCustomer extends \Phalcon\Mvc\Model
+class CareerTbl extends \Phalcon\Mvc\Model
 {
+
+
+
     /**
      * Initialize method for model.
      */
     public function initialize()
     {
- 
     }
 
     /**
@@ -17,14 +19,14 @@ class TblCustomer extends \Phalcon\Mvc\Model
      */
     public function getSource()
     {
-        return 'tbl_customer';
+        return 'career_tbl';
     }
 
     /**
      * Allows to query a set of records that match the specified conditions
      *
      * @param mixed $parameters
-     * @return TblCustomer[]
+     * @return CareerTbl[]
      */
     public static function find($parameters = null)
     {
@@ -35,7 +37,7 @@ class TblCustomer extends \Phalcon\Mvc\Model
      * Allows to query the first record that match the specified conditions
      *
      * @param mixed $parameters
-     * @return TblCustomer
+     * @return CareerTbl
      */
     public static function findFirst($parameters = null)
     {
