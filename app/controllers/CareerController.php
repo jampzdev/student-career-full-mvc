@@ -17,6 +17,9 @@ class CareerController extends ControllerBase
     public function listAction(){
         $this->view->setRenderLevel(View::LEVEL_ACTION_VIEW);
     }
+    public function addupdateAction(){
+        $this->view->setRenderLevel(View::LEVEL_ACTION_VIEW);
+    }
 
     public function getStudentListAction(){
         $this->view->disable();
@@ -55,4 +58,98 @@ class CareerController extends ControllerBase
             "devMessage"  => $info,
         ));
     }
+
+
+    public function addUpdateListAction(){
+      $this->view->disable();
+      $post = $this->request->getJsonRawBody();
+      if (empty($post)) {
+         $this->respond(array(
+             'statusCode'    =>  199,
+             'devMessage'    =>  "No data received.",
+         ));
+         exit;
+     }
+     $insQuery = new SubjectCategoryTbl();
+     $insQuery->category_name    = $post->category;
+     $insQuery->tags             = $post->tags;
+     if(!$insQuery->create()){
+          foreach($insQuery->getMessages() as $err){
+              $errors [] = $err->getMessage();
+          }
+          $this->respond(array(
+              'statusCode'    => 500,
+              'devMessage'    => $errors
+          ));
+      }
+      foreach ($post->career as $info) {
+        $insQuery2 = new CareerTbl();
+        $insQuery2->career = $info->career_name;
+        $insQuery2->position = $info->position;
+        $insQuery2->skills = $info->skills;
+        $insQuery2->category_id = $insQuery->id;
+        if(!$insQuery2->create()){
+             foreach($insQuery2->getMessages() as $err){
+                 $errors [] = $err->getMessage();
+             }
+             $this->respond(array(
+                 'statusCode'    => 500,
+                 'devMessage'    => $errors
+             ));
+         }
+      }
+
+      $this->respond(array(
+           'statusCode'    => 200,
+           'devMessage'    => "Record Saved!"
+       ));
+       exit;
+
+    }
+
+    public function getCategoryListAction () {
+        $this->view->disable();
+        $post = $this->request->getJsonRawBody();
+         if(!empty($post)){
+             // For pagination
+             $page       = $post->page;
+             $row        = $post->count;
+             $offset     = ($page - 1) * $row;
+             // (click)="gotoTop()"
+         }
+        $getQryCnt = SubjectCategoryTbl::query()
+          ->execute();
+        $getQry = SubjectCategoryTbl::query()
+            ->limit($row,$offset)
+            ->execute();
+
+        $this->respond(array(
+             'statusCode'    => 200,
+             'devMessage'    => $getQry,
+             'totalItems'    => $getQryCnt->count()
+         ));
+         exit;
+    }
+
+  public function getSpecificDataAction () {
+      $this->view->disable();
+      $post = $this->request->getJsonRawBody();
+      if (empty($post)) {
+         $this->respond(array(
+             'statusCode'    =>  199,
+             'devMessage'    =>  "No data received.",
+         ));
+         exit;
+     }
+     $id = $post->id;
+     if($id){
+       $getQry = SubjectCategoryTbl::query()
+           ->where("id = $id")
+           ->execute();
+       $getQry2 = SubjectCategoryTbl::query()
+               ->where("id = $id")
+               ->execute();
+
+     }
+  }
 }

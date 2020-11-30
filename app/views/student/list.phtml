@@ -1,0 +1,67 @@
+
+<div class="container" data-ng-controller="StudentCtrl as sCtrl" ng-init="getStudentList()">
+    <div class="block-header p-l-0" style="margin-right: -12px;">
+        <h2><b>STUDENT LIST</b></h2>
+        <form id="upload_csv" method="post" enctype="multipart/form-data">
+           <ul class="actions">
+               <li title="Import CSV file">
+                   <button type="file" ng-click="openFileUpload()" class="btn btn-default waves-effect">
+                   <i class="zmdi zmdi-square-right" style="transform: scaleX(-1);"></i> IMPORT</button>
+               </li>
+               <input type="file" class="hidden" id="info-select-file" file-input="files" />
+           </ul>
+       </form>
+
+
+        <!-- <ul class="actions">
+            <li>
+                <div class="form-group">
+                    <div class="fg-line">
+
+                </div>
+                </div>
+            </li>
+            <li title="Refresh">
+
+        </li>
+          <li title="Refresh">
+              <a href="" data-ng-click="clearSearch(); getCategoryList(); "><i class="zmdi zmdi-refresh" ></i></a>
+          </li>
+          <li title="Import CSV file">
+               <a href="" ng-click="generateAtmBilling()" ><i class="zmdi zmdi-upload" ></i></a>
+               <input type="file" class="hidden" id="member-info-select-file" accept=".csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel">
+           </li>
+
+        </ul> -->
+    </div>
+
+    <div class="card">
+        <div class="card-body table-responsive">
+
+            <table ng-table="studentTable" class="table table-display-inline table-striped table-vmiddle">
+                <thead>
+                    <tr>
+                        <th> STUDENT NUMBER </th>
+                        <th> NAME </th>
+                        <th> YEAR </th>
+                        <th> STA </th>
+
+                    </tr>
+                </thead>
+                <tbody>
+                   <tr ng-repeat="data in dataList">
+                      <td width="20%" style="cursor:pointer;" data-ui-sref="career.update({id:data.id})" class="text-center">{{ data.student_no }}</td>
+                       <td width="20%" style="cursor:pointer;" class="text-center">{{ data.lname }} {{ data.fname }}</td>
+                       <td width="20%" style="cursor:pointer;" class="text-center">{{ data.yearlvl }}</td>
+                        <td width="20%" style="cursor:pointer;" class="text-center">{{ data.student_status }}</td>
+                   </tr>
+                </tbody>
+                <tfoot>
+                  <tr ng-if="dataList.length == 0">
+                      <td colspan="4">No record(s) found.</td>
+                  </tr>
+                </tfoot>
+            </table>
+        </div>
+    </div>
+</div>

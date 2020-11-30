@@ -119,7 +119,7 @@ psslai
                 }
             }
         })
-
+        // USER MODULE
         .state ('users', {
             url: '/users',
             title: 'Users',
@@ -144,55 +144,10 @@ psslai
             }
         })
 
-        .state ('users.roles', {
-            url: '/roles',
-            title: 'User Roles',
-            auth : true,
-            templateUrl: baseUrl +'/users/roles',
-            resolve: {
-                loadPlugin: function($ocLazyLoad) {
-
-                }
-            }
-        })
-
-        .state ('settings', {
-            url: '/settings',
-            title: 'Settings',
-            auth : true,
-            templateUrl: baseUrl +'/partial/common',
-            resolve: {
-                loadPlugin: function($ocLazyLoad) {
-
-                }
-            }
-        })
-
-        .state ('settings.student', {
-            url: '/student',
-            title: 'Student',
-            auth : true,
-            templateUrl: baseUrl +'/settings/student',
-            resolve: {
-                loadPlugin: function($ocLazyLoad) {
-
-                }
-            }
-        })
-
-        .state('settings.career', {
-            url: '/career',
-            title: 'Career',
-            auth: true,
-            templateUrl: baseUrl + '/settings/career',
-            resolve: {
-                loadPlugin: function ($ocLazyLoad) {
-
-                }
-            }
-        })
 
 
+
+        // Career MODULE
         .state('career', {
             url: '/career',
             title: 'career',
@@ -216,12 +171,34 @@ psslai
                 }
             }
         })
+        .state('career.add', {
+            url: '/add',
+            title: 'Career',
+            auth: true,
+            templateUrl: baseUrl + '/career/addupdate',
+            resolve: {
+                loadPlugin: function ($ocLazyLoad) {
+
+                }
+            }
+        })
+        .state('career.update', {
+            url: '/update/:id',
+            title: 'Career',
+            auth: true,
+            templateUrl: baseUrl + '/career/addupdate',
+            resolve: {
+                loadPlugin: function ($ocLazyLoad) {
+
+                }
+            }
+        })
 
 
-
-        .state('student-home', {
-            url: '/student-home',
-            title: 'Student Home',
+        // STUDENT
+        .state('student', {
+            url: '/student',
+            title: 'student',
             auth: true,
             templateUrl: baseUrl + '/partial/common',
             resolve: {
@@ -230,17 +207,119 @@ psslai
                 }
             }
         })
-
-        .state('student-home.index', {
+        .state('student.list', {
             url: '/list',
-            title: 'Career',
+            title: 'student',
             auth: true,
-            templateUrl: baseUrl + '/student/home',
+            templateUrl: baseUrl + '/student/list',
             resolve: {
                 loadPlugin: function ($ocLazyLoad) {
 
                 }
             }
         })
+
+
+      // SUBJECT
+      .state('subject', {
+          url: '/subject',
+          title: 'subject',
+          auth: true,
+          templateUrl: baseUrl + '/partial/common',
+          resolve: {
+              loadPlugin: function ($ocLazyLoad) {
+
+              }
+          }
+      })
+      .state('subject.list', {
+          url: '/list',
+          title: 'subject',
+          auth: true,
+          templateUrl: baseUrl + '/subject/list',
+          resolve: {
+              loadPlugin: function ($ocLazyLoad) {
+
+              }
+          }
+      })
+
+        //
+        // .state ('users.roles', {
+        //     url: '/roles',
+        //     title: 'User Roles',
+        //     auth : true,
+        //     templateUrl: baseUrl +'/users/roles',
+        //     resolve: {
+        //         loadPlugin: function($ocLazyLoad) {
+        //
+        //         }
+        //     }
+        // })
+        //
+        // .state ('settings', {
+        //     url: '/settings',
+        //     title: 'Settings',
+        //     auth : true,
+        //     templateUrl: baseUrl +'/partial/common',
+        //     resolve: {
+        //         loadPlugin: function($ocLazyLoad) {
+        //
+        //         }
+        //     }
+        // })
+        //
+        // .state ('settings.student', {
+        //     url: '/student',
+        //     title: 'Student',
+        //     auth : true,
+        //     templateUrl: baseUrl +'/settings/student',
+        //     resolve: {
+        //         loadPlugin: function($ocLazyLoad) {
+        //
+        //         }
+        //     }
+        // })
+        //
+        // .state('settings.career', {
+        //     url: '/career',
+        //     title: 'Career',
+        //     auth: true,
+        //     templateUrl: baseUrl + '/settings/career',
+        //     resolve: {
+        //         loadPlugin: function ($ocLazyLoad) {
+        //
+        //         }
+        //     }
+        // })
+        //
+        //
+
+        //
+        //
+        //
+        // .state('student-home', {
+        //     url: '/student-home',
+        //     title: 'Student Home',
+        //     auth: true,
+        //     templateUrl: baseUrl + '/partial/common',
+        //     resolve: {
+        //         loadPlugin: function ($ocLazyLoad) {
+        //
+        //         }
+        //     }
+        // })
+        //
+        // .state('student-home.index', {
+        //     url: '/list',
+        //     title: 'Career',
+        //     auth: true,
+        //     templateUrl: baseUrl + '/student/home',
+        //     resolve: {
+        //         loadPlugin: function ($ocLazyLoad) {
+        //
+        //         }
+        //     }
+        // })
 
     });

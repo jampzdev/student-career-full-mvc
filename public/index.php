@@ -4,7 +4,7 @@
 // ini_set('display_startup_errors', 1);
 set_time_limit(0);
 ini_set('memory_limit', -1);
-//  error_reporting(0);
+error_reporting(1);
 
 define('APP_PATH', realpath('..'));
 
@@ -24,6 +24,11 @@ try {
      * Read services
      */
     include APP_PATH . "/app/config/services.php";
+
+	/**
+     * PHPMailer
+     */
+	include APP_PATH . "/app/library/mail/PHPMailerAutoload.php";
 
     /**
      * Handle the request

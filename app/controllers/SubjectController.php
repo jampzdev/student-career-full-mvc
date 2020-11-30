@@ -1,7 +1,7 @@
 <?php
 use Phalcon\Mvc\View;
 use Phalcon\Mvc\Controller;
-class StudentController extends ControllerBase
+class SubjectController extends ControllerBase
 {
 
   public function initialize(){
@@ -9,7 +9,7 @@ class StudentController extends ControllerBase
           $this->_generateToken('User');
       }
   }
-    public function studentAction(){
+    public function subjectAction(){
         $this->view->setRenderLevel(View::LEVEL_ACTION_VIEW);
     }
     public function listAction(){
@@ -35,18 +35,12 @@ class StudentController extends ControllerBase
                         $num = count($data);
                         echo "<p> $num fields in line $row: <br /></p>\n";
                         // for ($c=0; $c <= 13; $c++) {
-                          $insQuery = new StudentTbl();
-                          $insQuery->student_no = $data[0];
-                          $insQuery->lname = $data[1];
-                          $insQuery->fname = $data[2];
-                          $insQuery->mname = $data[3];
-                          $insQuery->course = $data[4];
-                          $insQuery->yearlvl = $data[5];
-                          $insQuery->section = $data[6];
-                          $insQuery->student_status = $data[7];
-                          $insQuery->address = $data[8];
-                          $insQuery->contactno = $data[9];
-                          $insQuery->birthplace = $data[10];
+                          $insQuery = new SubjectTbl();
+                          $insQuery->subject_code = $data[0];
+                          $insQuery->subject_name = $data[1];
+                          $insQuery->description = $data[2];
+                          // $insQuery->subject_type = $data[2];
+                          $insQuery->subject_units = 3;
                           if(!$insQuery->create()){
                                foreach($insQuery->getMessages() as $err){
                                    $errors [] = $err->getMessage();
@@ -56,7 +50,6 @@ class StudentController extends ControllerBase
                                    'devMessage'    => $errors
                                ));
                            }
-                        // }
                       }
                       $row++;
 
@@ -64,27 +57,10 @@ class StudentController extends ControllerBase
                     fclose($handle);
                 }
            }
-            // printf($_FILES['file']['tmp_name']);
-            // if(move_uploaded_file($_FILES['file']['tmp_name'], $path)){
-            //   var_dump($getFileUploaded);
-            // }
         }
-
-      // $getFileUploaded = $_SERVER["DOCUMENT_ROOT"] ."/".$path;
-      // move_uploaded_file ( $_FILES['file']['name'] , $path )
-      // var_dump($path);
-
-      // console.log($path);
-
-      // if(!empty($_FILES))  {
-      //         if(move_uploaded_file($_FILES['file']['tmp_name'], $path)){
-      //
-      //         }
-      // }
-
     }
 
-    public function getStudentListAction() {
+    public function getSubjectListAction() {
       $this->view->disable();
       $post = $this->request->getJsonRawBody();
        if(!empty($post)){
@@ -94,12 +70,9 @@ class StudentController extends ControllerBase
            $offset     = ($page - 1) * $row;
            // (click)="gotoTop()"
        }
-       $a = "StudentTbl";
-       $b = "SubjectTbl";
-       $c = "SemesterTbl";
-      $getQryCnt = StudentTbl::query()
+      $getQryCnt = SubjectTbl::query()
         ->execute();
-      $getQry = StudentTbl::query()
+      $getQry = SubjectTbl::query()
           ->limit($row,$offset)
           ->execute();
 

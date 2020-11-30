@@ -46,11 +46,11 @@ $di->setShared('view', function () use ($config) {
 	$router = new Router();
 	$router->handle();
 	$controller = $router->getControllerName();
-	if($controller == 'auth'){
-		$view->setLayout('login');
-	}else{
-		$view->setLayout('index');
-	}
+	// if($controller == 'auth'){
+	// 	$view->setLayout('login');
+	// }else{
+	// 	$view->setLayout('index');
+	// }
 	$view->registerEngines(array(
 	'.phtml' => 'Phalcon\Mvc\View\Engine\Php'
 	));
@@ -117,7 +117,3 @@ $di->set('baseurl', function(){
 $di->set('config', function () use ($config) {
     return $config;
 }, true);
-
-
-
-
