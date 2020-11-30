@@ -1,7 +1,7 @@
 
-<div class="container" data-ng-controller="CareerCtrl as cCtrl" ng-init="test()">
+<div class="container" data-ng-controller="CareerCtrl as cCtrl" ng-init="getCategoryList()">
     <div class="block-header p-l-0" style="margin-right: -12px;">
-        <h2><b>Settings > Students</b></h2>
+        <h2><b>Career Setup > Opportunity</b></h2>
 
         <ul class="actions">
             <li>
@@ -14,70 +14,90 @@
             <li title="Refresh">
 
         </li>
+          <li title="Refresh">
+              <a href="" data-ng-click="clearSearch(); getCategoryList(); "><i class="zmdi zmdi-refresh" ></i></a>
+          </li>
+          <li>
+              <a href="" data-ui-sref="career.add">
+                  <i class="zmdi zmdi-plus"></i>
+              </a>
+          </li>
         </ul>
     </div>
 
     <div class="card">
-
         <div class="card-body table-responsive">
-            <table ng-table="usersTable" class="table table-display-inline table-striped table-vmiddle">
+            <table ng-table="careerTable" class="table table-display-inline table-striped table-vmiddle">
                 <thead>
                     <tr>
-                        <th></th>
-                        <th> USER ROLE </th>
-                        <th> COMPLETE NAME </th>
-                        <th> USER NAME </th>
-                        <!-- <th> EMAIL ADDRESS </th> -->
+                        <th> CATEGORY </th>
+                        <th> TAGS </th>
+                        <th> Date Created </th>
                     </tr>
                 </thead>
-                <!-- <tr ng-repeat="list in users | orderBy: 'complete_name'"> -->
-                <tr ng-repeat="list in users">
-                    <td width="10%">
-                        <div class="p-t-5" ng-style="{width : '80px'}">
-                            <span>
-                                <ul class="actions" data-ng-if="!list.$edit">
-                                    <li>
-                                        <!-- <a title="Edit" data-ng-click="onEditSpecific(list);"> -->
-                                        <a ng-if="userRole.access.edit" title="Edit" data-ng-click="editUserForm(list.id); getUserRolesDropdown();">
-                                            <i class="zmdi zmdi-edit"></i>
-                                        </a>
-                                        <a ng-if="userRole.access.delete" title="Delete" data-ng-click="onDeleteUser(list.id)">
-                                            <i class="zmdi zmdi-delete"></i>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </span>
-                        </div>
-
-                    </td>
-
-                    <td ng-click="editUserForm(list.id); getUserRolesDropdown();">
-                        <div class="p-t-2" ng-style="{width:'100%'}">
-                            {{ list.user_role }}
-                        </div>
-                    </td>
-
-                    <!-- <td>{{list.complete_name}}</td> -->
-                    <td ng-click="editUserForm(list.id); getUserRolesDropdown();" width="32%">
-                        <div class="p-t-2" ng-style="{width:'100%'}">
-                            <!-- <a ng-click="editUserForm(list.id);" style="color: black !important"> -->
-                                {{ list.complete_name }}
-                            <!-- </a> -->
-                        </div>
-                    </td>
-
-                    <!-- <td>{{list.email_address}}</td> -->
-                    <td ng-click="editUserForm(list.id); getUserRolesDropdown();" width="32%">
-                        <div class="p-t-2" ng-style="{width:'100%'}">
-                            {{ list.email_address }}
-                        </div>
-                    </td>
-                </tr>
-                <tr ng-if="users.length == 0">
-                    <td colspan="4">No record(s) found.</td>
-                </tr>
+                <tbody>
+                   <tr ng-repeat="data in dataList">
+                      <td width="20%" style="cursor:pointer;" data-ui-sref="career.update({id:data.id})" class="text-center">{{ data.category_name }}</td>
+                       <td width="20%" style="cursor:pointer;" class="text-center">{{ data.tags }}</td>
+                        <td width="20%" style="cursor:pointer;" class="text-center">{{ data.date_created }}</td>
+                   </tr>
+                </tbody>
+                <tfoot>
+                  <tr ng-if="dataList.length == 0">
+                      <td colspan="4">No record(s) found.</td>
+                  </tr>
+                </tfoot>
             </table>
         </div>
     </div>
+
+    <script type="text/ng-template" id="addOpportunity  ">
+        <div class="modal-header p-b-15 modal-header-custom-design">
+            <i class="close zmdi zmdi-close zmdi-hc-fw" ng-click="clearFields();"></i>
+            <h2 class="text-center">ADD OPPORTUNITY</h2>
+        </div>
+        <div class="modal-body-fixed">
+          <div class="modal-body p-b-10 " style="text-align: -webkit-center;">
+               <div class="row p-l-25" style="text-align: -webkit-left;width:50%;">
+                   <div class="form-group p-l-15 text-left" >
+                       All fields with <span class="c-red">*</span> are required
+                   </div>
+
+
+                  <!-- <div class="col-sm-6 p-b-15">
+                      <div id="branchNameContainer" class="form-group m-b-30">
+                          <div class="fg-line">
+                              <label style="z-index:1024;">TAGS
+                                  <span class="c-red">*</span>
+                              </label>
+                               <input id="branchName" class="form-control bgm-white p-l-10" type="text" ng-model="form.opportunity.tags" maxlength="50" placeholder="e.g. SOFTWARE ENGINEER"
+                               />
+                          </div>
+                      </div>
+                  </div>
+
+                  <div class="col-sm-12 p-b-15">
+                      <div id="branchNameContainer" class="form-group m-b-30">
+                          <div class="fg-line">
+                              <label style="z-index:1024;"> SKILLS
+                                  <span class="c-red">*</span>
+                              </label>
+                                <textarea class="input-sm form-control fg-input" style="height:50px" maxlength="250" ng-model="form.opportunity.skills"  placeholder=" e.g. PHP,JAVASCRIPT,CSS,HTML.." uppercase-only no-special-char></textarea>
+                          </div>
+                      </div>
+                  </div> -->
+
+                  <div class="col-sm-12 m-b-10">
+                      <button type="button" style="width: 100%;" class="btn btn-primary btn-block p-t-10 p-b-10" ng-click="addNewAtm();">
+                          Add Entry
+                      </button>
+                  </div>
+              </div>
+          </div>
+        </div>
+        <div class="modal-footer p-t-0 p-l-25 p-r-30">
+
+        </div>
+    </script>
 
 </div>

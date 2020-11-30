@@ -1,0 +1,733 @@
+Subject code,Subject Name,Subject description
+CS 107,EMBEDDED PROGRAMMING,"Arduino is a prototype platform (open-source) based on an easy-to-use hardware and software. It consists of a circuit board, which can be programed (referred to as a microcontroller) and ready-made software called Arduino IDE (Integrated Development Environment), which is used to write and upload the computer code to the physical board. After taking this course, the students are expected to:
+(1) Arduino boards are able to read analog or digital input signals from different sensors and turn it into an output such as activating a motor, turning LED on/off, connect to the cloud and many other actions.  
+(2)  You can control your board functions by sending a set of instructions to the microcontroller on the board via Arduino IDE (referred to as uploading software).  
+(3)   Unlike most previous programmable circuit boards, Arduino does not need an extra piece of hardware (called a programmer) in order to load a new code onto the board. You can simply use a USB cable. 
+(4)  Additionally, the Arduino IDE uses a simplified version of C, making it easier to learn to program. "
+CS 323,INFORMATION ASSURANCE & SECURITY,"This course covers the fundamental concept of Information systems security models, software security and systems lifecycle management, policy development, personnel responsibilities, contingency planning, physical security, administrative controls, and information security assessment methods. At the end of the grading period the student must be:
+1. Describe the set of controls and processes both technical and policy intended to protect and defend information and information systems by ensuring their availability, integrity, authentication, and confidentiality and providing non-repudiation.
+2. Articulate the strengths and weaknesses associated with different approaches to security to the validity of current and pass processes and data.
+• CNSS Security Model
+• Components of an Information System
+• Approaches to Information Security Implementation
+• The system Development Life Cycle.
+• The Security Systems Development Life Cycle
+• Security Professionals and the Organization.
+Cryptography
+• Foundations of Cryptography
+• Cipher Methods
+• Cryptographic Algorithms
+• Cryptographic Tools
+• Protocols for Secure Communications
+• Attacks on Cryptosystems• Physical Access Controls
+• Fire Security and safety, Failure of Supporting Utilities and Structural Collapse
+• Interception of Data
+• Mobile and Portable Systems
+• Origins of Operation Security
+• The Operation security process
+• Information Security Project Management
+• Technical  and Non-Technical Aspects of Implementation
+• Information Systems Security Certification and Accreditation
+• Positioning and Staffing the security Function
+• Credentials of Information Security Professionals
+• Employment Policies and Practices
+• Security Considerations for Nonemployees
+• Internal Control Strategies
+• Privacy and the security of Personnel Data
+
+• Security Management Maintenance Models
+• Digital Forensics
+
+• Business Needs First
+• Threats
+• Attacks
+• Secure Software Development"
+CS 324,DISCRETE STRUCTURES 2,"the background in combinatorics and probability theory required in design and analysis of algorithms, in system analysis, and in other areas of computer science. At the end of the grading period the student must be:
+LO1: Solve real-world computing problems that require mapping to permutations, combinations of a set, and modular arithmetic.
+LO2: Compute the event probabilities using counting and Bayes’ Theorem of a sample computing problem.
+LO3: Solve equations involving recurrence and relate them to recursive algorithms.
+Unit 1. Basic Structures: 
+• Sets
+• Sets Operations
+• Functions
+• Sequences and Summations
+• Cardinality of Sets
+• Matrices
+
+Unit 2. Algorithms:
+• Algorithms
+• The Growth of Function
+• Complexity of Algorithms
+
+Unit 3. Number Theory and Cryptography
+• Divisibility and Modular Arithmetic
+• Integer Representation and Algorithms
+• Prime and Greatest Common Divisor
+• Solving Congruences
+• Application of Congruences
+• Cryptography
+
+Unit 4. Induction and Recursion
+• Mathematical Induction
+• Strong Induction and Well-Ordering
+• Recursive Definitions and Structural Induction
+• Recursive Algorithms
+• Program Correctness
+
+Unit 5. Counting
+• Basic of Counting
+• The Pigeonhole Principle
+• Permutations and Combinations
+• Binomial Coefficients and Identities 
+• Generalized Permutations and Combinations
+• Generating Permutations and Combinations
+
+Unit 6. Probability
+• An Introduction to Discrete Probability
+• Probability Theory
+• Bayes’ Theorem
+• Expected Value and Variance"
+CS 325,ARCHITECTURE & ORGANIZATION,"an overview of the architecture and organization of a computer, how it is built.  It includes a discussion of the CPU, memory, I/O organization and peripherals. 1. Identify the different hierarchical views of a computer (gates, microprogram, machine language, assembly language).
+2. Write code in assembly language.
+3. Know the different devices and components of a computer system and how these components work together.
+a. Organization and Architecture
+b. Structure and Function
+
+a. History of Computers
+b. Designing for Performance
+c. The evolution of Intel x86 Architecture
+d. Embedded System and ARM
+e. Performance Assessment
+a. Computer Components
+b. Computer Function
+c. Interconnection Structures
+d. Bus Interconnection
+e. PCI
+a. Computer Memory System Overview
+b. Cache Memory Principles
+c. Elements of Cache Design
+d. Pentium 4 Cache Design
+e. ARM cache organizationInternal Memory Technology
+a. Semiconductor Main Memory
+b. Error Correction
+c. Advanced DRAM Organization
+Unit 6 – External Memory
+a. Magnetic Disk
+b. RAID
+c. Optical Memory
+d. Magnetic Tape
+
+a. External Devices
+b. I/O Modules
+c. Programmed I/O
+d. Interrupt-Driven I/O
+e. Direct Memory Access
+f. I/O Channels and Processors
+g. The External Interface: FireWire and InfiniBand
+
+a. Operating System Overview
+b. Scheduling
+c. Memory Management
+d. Pentium Memory Management
+e. ARM Memory Management
+
+a. Arithmetic and Logic Unit (ALU)
+b. Integer Arithmetic
+c. Floating Point Representation
+d. Floating Point Arithmetic
+
+a. Machine Instructions Characteristics
+b. Types of Operands
+c. Intel x86 and ARM Data Type
+d. Types of Operations
+e. Intel x86 and ARM Operation Types
+
+a. Addressing
+b. x86 and ARM Addressing Modes
+c. Instruction Formats
+d. x86 and Instructions Formats
+e. Assembly Language
+
+a. Processor Organization
+b. Register Organization
+c. Instruction Cycle
+d. Instruction Pipelining
+e. The x86 Processor Family
+f. The ARM Processor
+a. Instruction Execution Characteristics
+b. The Use of a Large Register File
+c. Compiler-Based Register Optimization
+d. Reduce Instruction Set Architecture
+e. RISC Pipelining
+f. MIPS R4000
+g. SPARC
+
+a. The Use of Multiple Processors
+b. Symmetric Multiprocessors
+c. Cache Coherence and MESI Protocol
+d. Multithreading and Chip Multiprocessors
+e. Clusters
+f. Nonuniform Memory Access Computers
+g. Vector Computation
+"
+CS 423,HUMAN COMPUTER INTERACTION,"the fundamentals theories and concepts of human-computer interaction (HCI), HCI is an interdisciplinary field that integrates theories and methodologies across many domains including cognitive psychology, neurocognitive engineering, computer science, human factors, and engineering design. Students will gain theoretical knowledge of and practical experience in the fundamentals aspects of Human perception, cognition, and learning as relates to the design, implementation, and evaluation of multimodal interfaces (touch, vision, natural language and 3-D audio), virtual reality, and spatial displays. In addition to lectures, students will work on individual and team assignments to design, implement, and evaluate various interactive systems and user interfaces based on knowledge culled from class material and additional research. LO1: Develop appropriate user interfaces for domain specific applications
+LO2: Evaluate the effectiveness of a design of an application or product in solving domain-specific problems
+• Interaction Design Basics
+• HCI in the Software Process
+• Design Rules
+• Implementation Support
+• Evaluation Techniques
+• Universal Design
+• User Support
+• Cognitive Models
+• Socio-organizational Issues and stakeholder Requirements
+• Communication and Collaboration Models
+• Task Analysis
+• Dialog Notations and Design
+• Models of the System
+• Modeling Rich Interaction
+• Groupware
+• Ubiquitous Computing and Augmented Realities
+• Hypertext, Multimedia and the World Wide Web
+"
+CS 214,INFORMATION MANAGEMENT,"concept of information management through the integration of information systems and the use of relational databases as a repository of the information that can be converted to business knowledge. This is also a hands-on course where the students will learn about relational databases and how to manage them by completing various activities using Microsoft Access 2016. Mastering the objectives that are presented in each real-world project will enable you to develop those skills essentials to unlocking the potential of a fully functional RDBMS (relational database management system) as well as develop logical thinking so students can develop the step-by-step procedures necessary to implement a solution to a structured problem.
+(1) Identify sources of information relevant to your needs inside and outside of your organization 
+(2) Evaluate and improve the quality of your information sources 
+(3) Learn how to manage information overload 
+(4) Describe key principles for communicating effectively in writing 
+(5) Identify the principles behind information system design and management 
+(6) Explain the features of knowledge management.
+(7) Explain how to communicate problem analysis and solutions using a database application 
+(8) Describe the underlying structures of a relational database and how these storage structures facilitate the extraction of information in an organization 
+(9) Demonstrate how integrated information systems can help an organization prosper by providing professionals with accurate, consistent, and current data 
+(10) Describe how to manage and organize information 
+(11) Explain how different information needs require different types of decision making 
+(12) Demonstrate the importance of RDBMS application
+1 Information and decision making
+2 Evaluating information
+3 Communicating information
+4 Information systems
+5 Knowledge management
+6 Access 2016 Fundamentals
+7 Database Basics
+8 Creating and Working with a Database
+9 Finding, Filtering, and Formatting Data
+10 Customizing Tables
+11 Creating Custom Queries
+12 Customizing Forms
+13 Customizing Reports
+14 Using Database Tools
+15 Integrating Access with MS Applications
+1 Information and decision making
+• Information and decision making
+• From data to information to knowledge and learning 
+• Information comes in many forms
+• Information as an aid to decision making
+• Using the Web as an information resource
+4 Information systems
+• Key issues in systems development 
+• Intranets and extranets
+•  Data security
+
+5 Knowledge management
+• How do you manage knowledge?
+• Challenges and critical success factors
+• Knowledge management in practice
+
+1. Define important terminologies.
+2. Differentiate data from information from knowledge.
+3. Give example of data, information and knowledge.
+4. Explain the importance of database in information management.
+5. Understand the importance of information in decision making.
+6. Identify the different sources of information.
+1. Evaluate the information coming from different sources.
+2. Define causes of information overload.
+3. Identify different practice in reducing information overload.
+4. Understand the importance of planning and structuring the documents
+5. Recognize the power of text used in presentations
+1. Formulate and present a system proposal
+2. Describe the objectives, scope and limitation of the proposed system.
+1. Formulate and present a system proposal
+2. Describe the objectives, scope and limitation of the proposed system.
+1. Familiarize with MS Access 2016
+2. Recognize the different parts of the MS Access window environment
+3. Explain the importance of MS Access in the system development
+4. Recognize the different keyboard commands and contextual menu of MS Access
+5. Differentiate table, form, query and report.
+1. Define database, database management system and relational management system.
+2. Identify the parts of a database
+3. Define data needs and types 
+4. Define and print table relationships
+5. Add, set, change or remove primary key
+6. Split databases
+7. Create databases
+8. Create tables 
+9. Modify tables 
+10. Enter records using datasheet view 
+11. Delete records from a table
+12. Change records in a table
+
+1. Identify the different steps in planning a database
+2. Analyze the effect of referential integrity with and without cascading on related tables.
+3. Develop and test multi-table Access queries with complex Boolean selection criteria. 
+4. Develop and test advanced Access queries such as aggregate, group, and parameter queries.
+5. Develop custom Access forms with the form wizard and modify them in form design view.
+6. Develop custom Access reports with the report wizard and modify them in form design view
+1. Familiarize with the basic and advance techniques in MS Access
+2. Create a form that can filter data base on given categories
+3. Manage the datasheet of MS Access
+4. Identify the different steps in manipulating the MS Access datasheet
+5. Assign a conditional value to a calculated field
+6. Enter, edit and delete records
+7. Navigate among records
+8. Find and replace data 
+9. Attach documents to and detach from records
+10. Import data
+1. Customize and normalize MS Access tables.
+2. Set a default value for data entry.
+3. Manage an input mask and look-up field.
+4. Define a data validation for input.
+5. Create cardinality and modality to table relationship
+
+1. Create queries
+2. Modify queries
+3. Use multiple selection criteria in a query.
+4. Use logical operators in a query.
+5. Use comparison operators in a query.
+6. Create a parameter query1. Create forms
+2. Use the Form Wizard
+3. Maintain data using a form. 
+4. Preview selected form records.
+5. Change a form’s format.
+6. Create a main form/sub-form.
+7. Format custom forms with controls
+8. Create reports
+9. Modify the design of reports and forms
+10. Use the Report Wizard. 
+11. Print a custom report.
+12. Sort and group report data. 
+13. Calculate group and overall totals on a report. 
+14. Modify report controls and properties.
+15. Assign a conditional value to a calculated field
+
+1. Set, modify and delete a database password.
+2. Encrypt and decrypt a database.
+3. Replicate a database.
+4. Split and convert a database
+5. Identify the steps in setting startup options.
+
+1. Create and modify charts
+2. Export data
+3. Save database objects as other file types
+4. Print database objects
+5. Perform routine database operations
+6. Manage databases"
+CS 111,INTRODUCTION TO COMPUTING,"Introduction to Computing introduce students to a well-rounded approach to computer literacy that includes a keyboarding/word processing review, basic computer concepts, software applications and the Internet. skills related to information technology basics, keyboarding technique, internet fundamentals, network systems, computer ethics, computer maintenance/ upgrading/ troubleshooting, computer applications, programming, graphics, and interactive media. • Basic Computer Concepts
+o Evolution of Information and Communications Technology
+o Parts of the Computer
+• Identifying types of computers
+• Identifying computer hardware components and their functions
+• Evaluating, purchasing, and maintaining computer equipment
+• Identifying software and hardware interactions and types of software
+• Identifying operating system functions
+• Taking a tour of Windows 
+• Creating and deleting files
+• Formatting text and performing common printing functions
+• Using graphic tools
+• Number Systems
+• Decimal number
+• Hexadecimal number
+• Binary numbers
+• Decimal to binary conversion
+• Hexadecimal to decimal conversion
+• Hardware and Software Installation, Troubleshooting, Maintenance, Upgrading
+• Introduction to Internet Technologies
+• Latest Trends and Issues in Information Technology
+"
+CS 413,PARALLEL AND DISTRIBUTED COMPUTING,"An introductory course in distributed systems. The emphasis will be on the techniques for creating functional, usable, and high-performance distributed systems. To make the issues more concrete, the class includes several multi-week projects • Learn the principles, architectures, algorithms and programming models used in distributed systems;
+• Examine state-of-the-art distributed systems, such as Google File System;
+• Design and implement sample distributed systems;
+• Identify the core concepts of distributed systems;
+• Examine how existing systems have applied the concepts of distributed systems in designing large systems.
+
+Requiring significant design and implementation. The goals of this course are twofold: First, students will gain an understanding of the principles and techniques behind the design of distributed systems, such as locking, concurrency, scheduling, and communication across networks. Second, students will gain practical experience in designing, implementing, and debugging real distributed systems.
+The major themes this course will teach include process distribution and communication, data distribution, scheduling, concurrency, resource sharing, synchronization, naming, abstraction and modularity, failure handling, protection from accidental and malicious harm, distributed programming models, distributed file systems, virtualization, and the use of instrumentation, monitoring and debugging tools in problem solving. As the creation and management of software systems is a fundamental goal of any undergraduate systems course, students will design, implement, and debug large programming projects. Students will learn the design and implementation of today’s popular distributed system paradigms, such as Google File System and MapReduce.
+"
+CS 212,PROGRAMMING LANGUAGES,"computer programming using the Visual BASIC programming language with object-oriented programming principles.  Emphasis is on event-driven programming methods, including creating and manipulating objects, classes, and using object-oriented tools such as the class debugger.  Upon completion, students should be able to design, code, test and debug at a beginning level. • Design, create, build, and debug Visual Basic.Net applications;
+• Explore Visual Basic’s Integrated Development Environment (IDE);
+• Implement syntax rules in Visual Basic programs;
+• Explain variables and data types used in program development;
+• Apply arithmetic operations for displaying numeric output;
+• Write and apply decision structures for determining different operations;
+• Write and apply loop structures to perform repetitive tasks;
+• Write and apply procedures, sub-procedures, and functions to create manageable code;
+• Create one and two dimensional arrays for sorting, calculating, and displaying of data;
+• Write Visual Basic programs using object-oriented programming techniques including classes, objects, methods, instance variables, composition, and inheritance, and polymorphism;
+• Write Windows applications using forms, controls, and events;
+• Create and connect database in VB.Net applications using MS Access.
+• Discuss the history of Visual Basic and .NET;
+• Navigate the Integrated Development Environment (IDE) and Help features;
+• Create, compile, and execute simple Windows Forms and Console applications;
+• Write statements that input data from the keyboard and output data to the screen;
+• Use message dialogs to display messages;
+• Declare and use data of various types;
+• Store and retrieve data from memory;
+• Use arithmetic operators to perform calculations;
+• Use the precedence of arithmetic operators to determine the order in which operators are applied.
+• Develop algorithms through top-down, stepwise refinement;
+• Use equality, relational, and logical operators to compare operands and form conditions;
+• Write selection/decision-making statements to choose among alternative actions;
+• Use counter-controlled and sentinel-controlled repetition statements to execute statements in a program repeatedly;
+• Use compound assignment operators to abbreviate assignment operations;
+• Use nested control statements;
+• Use logical operators to form more complex conditions;
+• Use Exit and Continue statements to break out of a repetition statement or the current iteration of a repetition statement.
+• Declare, allocate, and initialize array data structures;
+• Access and modify individual elements of arrays;
+• Iterate through elements of arrays;
+• Sort and Search lists or tables of data stored in arrays;
+• Declare and manipulate multidimensional arrays;
+• Pass arrays to methods.
+• Create Objects and Call Methods; • Create Classes with Methods, Instance Variables and Properties;
+• Understand different types of scope and how it affects access;
+• Instance variables vs. local variables;
+• Declare and use constructors to initialize objects;
+• Differentiate value types and reference types;
+• Create constant members at compile time and at runtime;
+• Use the Object Browser to navigate the .NET Framework Class Library;
+• Use common controls in designing windows application;
+• Create sample programs using common controls;
+• Apply previous discussions to create more functional application.
+• Learn how to create database using MS Access
+• Know how to connect database in VB.Net
+• Create and present a full-functional system made from VB.Net with dbase using MS Access"
+,SOCIAL ISSUES AND PROFESSIONAL PRACTICE 1,"This course focused most of the culture discussion on corporate culture, since this book is focused on ethics in IT organizations. However, the culture of a nation or people group also affects ethics. This goes beyond the typical “ugly American” lack of politeness such as trying to establish service level agreements within a company or taking a business card with one hand in Japan. We will try to illustrate how differences in culture can actually make someone appear untrustworthy with an anecdote. • Discuss the ethical considerations of system administrators and operations management;
+• Define the role as a person who is responsible for overall system administration
+• Discuss the ethical considerations of the information systems auditor;
+• Rightly report audit data we dove into the sensitive area of auditing for the Internet;
+• Learn to draw boundaries when performing audits for multiple companies in the process of a merger
+• Learn that full disclosures are the revealing of all vulnerability details;
+• Delved into the dilemma of the ethical duty to warn;
+• Concludes with the consideration of responsible disclosure plans
+• Know that a postmaster can strain even the most ethical person’s judgement;
+• Learn from an ethics standpoint there is a duty to inform users of the kind of monitoring they are subjected to;
+selectively applying policy is discriminatory and unethical. • Know that we each have an ethical and professional responsibility to maintain a thorough knowledge of e-mail scams;
+• Covers a sampling of the thousands of scams blanketing Internet e-mail today.
+• Define the three primary roles of DBA as the information technologist;
+• Learn that there are many different ethical dilemmas a DBA may face while performing their job function;
+• Thoroughly highlighted the ethical pitfalls of database administration
+• Cover the various assortment of ethical issues you encounter in the workplace;
+• Delve into the many issues caused from your computing environment;
+• Look at a situation where the person deliberately acted unethically
+• Discuss the ethical considerations of customers, starting with their rights with respect to software companies. • Discuss potential conflicts of interest and how friendships and intimacy in the work place;
+• Conclude with business strategies that transfer blame onto the trusted assistant from the • Cover many issues and pitfalls of the life of a telecommuter;
+• Talk about the responsibility of having a company laptop computer.
+• Know that the ethics of personal use coverer a wide range of topics "
+CS 324,SOFTWARE ENGINEERING 2,"practical problems of specifying, designing, building, testing, and delivering reliable software projects. Other topics covered in lectures include professionalism, project management, and the legal framework for software development. As a central part of the course, student teams carry out software projects. Each project includes all aspects of software development from a feasibility study to final delivery. (1) Improve an existing software by adopting an appropriate design pattern. 
+(2) Translate program design and specifications into actual program codes. 
+(3) Design test case documents applying good testing practices. Run the existing program against this test case, and report program defects properly. 
+(4) Update a software that requires defect fixing or has undergone some changes in specifications.
+1. understand what software engineering is and why it is important;
+2. understand that the development of different types of software systems may require different software engineering techniques;
+3. understand some ethical and professional issues that are important for software engineers;
+4. understand the concepts of software processes and software process models;
+5. have been introduced to three generic software process models and when they might be used;
+6. know about the fundamental process activities of software requirements engineering, software development, testing, and evolution;
+7. understand why processes should be organized to cope with changes in the software requirements and design;
+8. understand how the Rational Unified Process integrates good software engineering practice to create adaptable software processes. 1. understand the rationale for agile software development methods, the agile manifesto, and the differences between agile and plan driven development;
+2. know the key practices in extreme programming and how these relate to the general principles of agile methods;
+3. understand the Scrum approach to agile project management;
+4. be aware of the issues and problems of scaling agile development 5. understand the concepts of user and system requirements and why these requirements should be written in different ways;
+6. comprehend the differences between functional and nonfunctional software requirements;
+7. understand how requirements may be organized in a software requirements document;
+8. recognize the principal requirements engineering activities of elicitation, analysis and validation, and the relationships between these activities;
+9. appreciate why requirements management is necessary and how it supports other requirements engineering activities.
+1. realize how graphical models can be used to represent software systems;
+2. understand why different types of model are required and the fundamental system modeling perspectives of context, interaction, structure, and behavior;
+3. familiarized to some of the diagram types in the Unified Modeling Language (UML) and how these diagrams may be used in system modeling;
+4. be aware of the ideas underlying model-driven engineering, where a system is automatically generated from structural and behavior
+5. understand why the architectural design of software is important;
+6. understand the decisions that have to be made about the system architecture during the architectural design process;
+7. presented to the idea of architectural patterns, well-tried ways of organizing system architectures, which can be reused in system designs;
+8. distinguish the architectural patterns that are often used in different types of application system, including transaction processing systems and language processing systems1. recognize the most important activities in a general, object-oriented design process;
+2. understand some of the different models that may be used to document an object-oriented design;
+3. know about the idea of design patterns and how these are a way of reusing design knowledge and experience;
+4. have been introduced to key issues that have to be considered when implementing software, including software reuse and open-source development.
+5. understand the stages of testing from testing, during development to acceptance testing by system customers;
+6. acquaint with the techniques that help you choose test cases that are geared to discovering program defects;
+7. recognize test-first development, where you design tests before writing code and run these tests automatically;
+8. distinguish the important differences between component, system, and release testing and be aware of user testing processes and techniques.
+software systems are to remain useful and that software development and evolution may be integrated in a spiral model;
+2. appreciate software evolution processes and influences on these processes;
+3. have learned about different types of software maintenance and the factors that affect maintenance costs; and
+4. comprehend how legacy systems can be assessed to decide whether they should be scrapped, maintained, reengineered, or replaced.
+5. know what is meant by a sociotechnical system and understand the difference between a technical, computer-based system and a sociotechnical system;
+6. have been introduced to the concept of emergent system properties, such as reliability, performance, safety, and security;
+software systems are to remain useful and that software development and evolution may be integrated in a spiral model;
+2. appreciate software evolution processes and influences on these processes;
+3. have learned about different types of software maintenance and the factors that affect maintenance costs; and
+4. comprehend how legacy systems can be assessed to decide whether they should be scrapped, maintained, reengineered, or replaced.
+5. know what is meant by a sociotechnical system and understand the difference between a technical, computer-based system and a sociotechnical system;
+6. have been introduced to the concept of emergent system properties, such as reliability, performance, safety, and security;
+software systems are to remain useful and that software development and evolution may be integrated in a spiral model;
+2. appreciate software evolution processes and influences on these processes;
+3. have learned about different types of software maintenance and the factors that affect maintenance costs; and
+4. comprehend how legacy systems can be assessed to decide whether they should be scrapped, maintained, reengineered, or replaced.
+5. know what is meant by a sociotechnical system and understand the difference between a technical, computer-based system and a sociotechnical system;
+6. have been introduced to the concept of emergent system properties, such as reliability, performance, safety, and security;
+7. know about the procurement, development, and operational activities that are involved in the systems engineering process;
+8. understand why software dependability and security should not be considered in isolation and how they are affected by systems issues, such as operator errors.
+1. understand why dependability and security are usually more important than the functional characteristics of a software system;
+2. know the four principal dimensions of dependability, namely availability, reliability, safety, and security;
+3. be aware of the specialized terminology that is used when discussing security and dependability;
+4. recognize that to achieve secure, dependable software, you need to avoid mistakes during the development of a system, to detect and remove errors when the system is in use, and to limit the damage caused by operational failures.
+5. understand how a risk-driven approach can be used for identifying and analyzing safety, reliability, and security requirements;
+6. comprehend how fault trees can be used to help analyze risks and derive safety requirements;
+7. have been introduced to metrics for reliability specification and how these are used to specify measurable reliability requirements;
+8. know the different types of security requirements that may be required in a complex system;
+9. be aware of the advantages and disadvantages of using formal, mathematical specifications of a system.
+1. comprehend how system dependability can be achieved by using redundant and diverse components;
+2. know how dependable software processes contribute to the development of dependable software;
+3. understand how different architectural styles may be used to implement software redundancy and diversity;
+4. be aware of good programming practice that should be used in dependable systems engineering
+5. realize the difference between application security and infrastructure security;
+6. know how life-cycle risk assessment and operational risk assessment are used to understand security issues that affect a system design;
+7. be aware of software architectures and design guidelines for secure systems development;
+8. appreciate the notion of system survivability and why survivability analysis is important for complex software systems.
+
+1. understand the processes and procedures involved in software change management;
+2. know the essential functionality that must be provided by a version management system, and the relationships between version management and system building;
+3. understand the differences between a system version and a system release, and know the stages in the release management process.
+4. understand the rationale for software process improvement as a means of improving both product quality and the efficiency and effectiveness of software processes;
+5. understand the principles of software process improvement and the cyclic process improvement process;
+6. know how the Goal-Question-Metric approach may be used to guide process measurement;
+have been introduced to the ideas of process capability and process maturity, and the general form of the SEI’s CMMI model for process improvement
+Week 14
+At the end of the lesson, students are expected to
+
+1. recognize why the separation of concerns is a good guiding principle for software development;
+2. familiarized to the fundamental ideas underlying aspects and aspect-oriented software development;
+3. understand how an aspect-oriented approach may be used for requirements engineering, software design, and programming;
+4. recognize the value of the difficulties of testing aspect-oriented systems.
+5. now the principal tasks of software project managers;
+6. have been introduced to the notion of risk management and some of the risks that can arise in software projects;
+7. appreciate factors that influence personal motivation and what these might mean for software project managers;
+8. understand key issues that influence team working, such as team composition, organization, and communication
+Week 15
+At the end of the lesson, students are expected to
+
+1. understand the fundamentals of software costing and reasons why the price of the software may not be directly related to its development cost;
+2. know what sections should be included in a project plan that is created within a plan-driven development process;
+3. comprehend what is involved in project scheduling and the use of bar charts to present a project schedule;
+4. have been introduced to the ‘planning game’, which is used to support project planning in extreme programming;
+5. understand how the COCOMO II model can be used for algorithmic cost estimation.
+6. have been introduced to the quality management process and know why quality planning is important;
+7. understand that software quality is affected by the software development process used;
+8. be aware of the importance of standards in the quality management process and know how standards are used in quality assurance;
+9. know how reviews and inspections are used as a mechanism for software quality assurance;
+10. comprehend how measurement may be helpful in assessing some software quality attributes and the current limitations of software measurement.
+
+"
+,ALGORITHM & COMPLEXITY,"The design and analysis of algorithms is central to computer science. This course will focus both on presenting general techniques for designing correct and efficient algorithms, as well as on formal methods for proving the correctness and analyzing the complexity of such algorithms. Also included will be an introduction to the theory of NP-completeness, whereby certain computation problems can be classified as being difficult in a formal sense. LO1. Demonstrate the familiarity with major algorithms and data structures.
+LO2. Examine the main methods of constructing algorithm and the computational complexity of algorithms.
+LO3. Identify the computational complexity of a simple iterative algorithm and recursive.
+LO4. Apply important algorithmic design paradigms and methods of analysis
+
+• Induction
+• Invariance
+• Correctness of Algorithm
+o Division Algorithm
+o Euclid’s Algorithm
+o Palindrome Algorithm
+o Recursion
+o Formal Verification
+• Stable Marriage
+1. Describe the greedy paradigm and explain when an algorithmic design situation calls for it. 
+2. Recite algorithms that employ this paradigm.
+3. Synthesize greedy algorithms, and analyze them. 
+
+1. Analyze worst-case running times of algorithms using asymptotic analysis
+Greedy Algorithms, Unit 3 – Asymptotic Notation 1. Apply important algorithmic design paradigms and methods of analysis. 1. Describe the divide-and-conquer paradigm and explain when an algorithmic design situation calls for it.
+2. Recite algorithms that employ this paradigm.
+3. Synthesize divide-and-conquer algorithms.
+4. Derive and solve recurrences describing the performance of divide-and-conquer algorithms.
+1. Describe the dynamic-programming paradigm and explain when an algorithmic design situation calls for it.
+2. Recite algorithms that employ this paradigm.
+3. Synthesize dynamic-programming algorithms, and analyze them.
+
+1. Explain the different ways to analyze expected running time and probability of error using randomized algorithms.
+2. Recite algorithms that employ randomization.
+3. Explain the difference between a randomized algorithm and an algorithm with probabilistic input Randomized Algorithms 1. Explain the major graph algorithms and their analyses. 
+2. Employ graphs to model engineering problems, when appropriate
+ Graph Algorithms"
+,COMPUTATIONAL SCIENCE,"foundations of Parallel Computing at the intersection of large-scale computational science and big data analytics. Many science communities are combining high performance computing and high-end data analysis platforms and methods in workflows that orchestrate large-scale simulations or incorporate them into the stages of large-scale analysis pipelines for data generated by simulations, experiments, or observations. 
+LO1. Recognize and recall programming models, platforms, open-source tools and computing architectures that are relevant to computational and data science.
+LO2. Assessment of computational approaches and their practical applications to scientific problems.
+LO3. Fundamentals of parallel computing including abstract thinking and algorithmic development.
+LO4. Identify which parallel strategy is appropriate to solve a given problem.
+LO5. Design efficient parallel solutions to scientific problems.
+LO6. Implement parallel programs in prominent programming models and evaluate their performance using various metrics.
+LO7. Use a collection of open source software and state-of-the-art HPC platforms for data analysis, modelling, and visualization of real scientific problems.
+• Computational Science
+• Data Science
+• The need for parallel processing• Parallel Processing Architecture
+• Large-Scale Processing on the Cloud
+• Practical Aspects of Cloud Computing
+• Application Parallelism
+• Design Parallel Programs• Foundations of Parallel Computing
+• Performance Optimization
+• Accelerated Computing
+• Shared Memory Parallel Processing
+• Distributed-memory Parallel Processing
+• Foundations of Data Processing
+• Batch Data Processing
+• Dataflow Processing
+• Stream Data Processing
+• Exascale Computing
+• Quantum Computing
+• Edge Computing and Analytics
+• Extreme Scale Computing
+
+
+This is an applications course highlighting the use of modern computing platforms in solving computational and data science problems, enabling simulation, modeling and real-time analysis of complex natural and social phenomena at unprecedented scales. The class emphasizes on making effective use of the diverse landscape of programming models, platforms, open-source tools, computing architectures and cloud services for high performance computing and high-end data analytics.
+"
+CS 312,GRAPHICS VISUAL COMPUTING,"introduction to the world of computer generated 3-D modeling. As an introductory course, it provides a basic understanding of the skills and techniques employed by 3-D designers in a wide range of applications.  TO 3D GRAPHICS
+• Definition of Computer Graphics
+• Vector Graphics vs. Raster Graphics
+• 2D vs. 3D
+• 3D Graphics
+• Scan Conversion vs. Ray Tracing
+• 3D Modeling Software’s
+CHAPTER II: GETTING STARTED WITH BLENDER
+• Overview
+• Using default scene
+• Units and Scale
+• X, Y, and Z axis
+• Primitive Default Objects
+CHAPTER III: MANIPULATING OBJECTS IN 3 DIMENSIONAL SPACE
+• Naming and Deleting Objects
+• Importance of Layers
+• Object’s Global and Local Orientation
+• Pivot Points
+• Camera Views
+• Object Duplications
+• Mesh Smoothing
+CHAPTER IV: EDIT MODE AND MESH MODELING
+• Vertices, Edges and Faces
+• Selecting Vertices, Edges and Faces
+• Subdivide options
+• Loop Cut and Slide
+• Knife Cut
+• Rip Tool
+• Extrude
+• Spin and Spin Duplication
+• Screw
+• Box Select vs. Circle Select
+CHAPTER V: MORE ON OBJECT AND EDIT MODELING
+• Empty Object
+• Background Image
+• Parenting Objects
+• Joining Objects
+• Separating Objects
+• Subdivision Surface Modifier
+• Bezier Curves and Circles Handles
+• Bezier Curve and Circle Extrusion
+• Bezier Curve and Circle Loft Beveling Along a Path
+• Bezier Curve and Circle Lathe Beveling Along a Path
+• Snap and Align Tools
+• Proportional Editing
+• Text Objects 
+
+
+CHAPTER VI: MATERIALS AND TEXTURES
+• Colored Material
+• Multiple Materials
+• Blender Materials Shaders
+• Blender Materials Transparency
+• Blender Materials Mirror
+• Blender Materials Ramps
+• Procedural Textures Gradient Blend
+• Image Textures
+• Decal Image Textures
+• Bump Textures
+• Camera Constraint
+• Appending and Linking Blender Files
+• Rendering to an Image File
+• Render Slots
+• Packing Image Texture Files
+• Image Textures - Generated Mapping 
+CHAPTER VII: LIGHTING
+• Blender Lighting Point Lamp
+• Blender Lighting Sun Lamp
+• Blender Lighting Sun Lamp Sky and Atmosphere
+• Blender Lighting Hemi Lamp
+• Blender Lighting Area Lamp
+• Blender Lighting Spot Lamp
+• Blender Lighting Ambient Occlusion
+• World Editor Background Sky
+• World Editor Background Image
+• World Editor Stars
+• World Editor Mist
+• Lamp Constraints and Parenting 
+CHAPTER VIII: ANIMATION
+• Basic Keyframe Animation
+• Graph Editor
+• Cyclic Animation
+• Path Animation
+• Camera Path Fly Around
+• Alpha Animation
+• Color Animation
+• Shape Key Animation
+• Rendering to A Video File 
+CHAPTER IX: MODIFIERS
+• Array Modifier
+• Bevel Modifier
+• Boolean Modifier
+• Curve Modifier
+• Simple Deform Modifier
+• Mirror Modifier
+• Lattice Modifier
+• Displace Modifier
+• Wave Modifier
+• Solidify Modifier
+• Decimate Modifier
+• Edge Split Modifier
+• Screw Modifier
+• Multiple Modifiers 
+CHAPTER X: SCENES AND MODELING
+• Multiple Cameras
+• Multiple Blender Scenes
+• Blender Groups
+• Blender Display Speed and File Size
+• Smoothing Problems
+• Cutting A Hole in A Flat Surface
+• Cutting A Hole Out of a Curved Surface
+• Creating an Animated GIF
+• Binding Multiple Cameras to The Blender Timeline
+CHAPTER XI: PARTICLES
+• Basic Blender Particles
+• Smoke Particles
+• Fire Particles
+• Static Particles
+CHAPTER XII: CONSTRAINTS
+• Relationship Constraints - ChildOf
+• Relationship Constrains – Floor and Follow Path
+• Transform Constraints
+• Constrains – Pivot, TrackTo
+• Locked Track Constraint
+• Constraints Controls
+CHAPTER XIII: UV TEXTURES
+• Unwrapping UVs
+• Rendering UV Textures
+• Sculpt Mode
+CHAPTER XIV: NURBS SURFACES / META OBJECTS
+• NURBS Curves - The Basics
+• NURBS Surface Curves – The Basics
+• NURBS Surface Circle-Part1
+• NURBS Surface Circle-Part2-Dupliframes-Screw Modifier
+• NURBS Surface Patch
+• NURBS Surfaces-Cylinder-Sphere-Torus
+• NURBS Surfaces-Textures
+• Meta Objects-Object Mode
+• Meta Objects-Edit Mode
+"

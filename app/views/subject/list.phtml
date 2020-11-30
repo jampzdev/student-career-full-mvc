@@ -1,0 +1,41 @@
+
+<div class="container" data-ng-controller="SubjectCtrl as subCtrl" ng-init="subjectList()">
+    <div class="block-header p-l-0" style="margin-right: -12px;">
+        <h2><b>SUBJECT LIST</b></h2>
+        <form id="upload_csv" method="post" enctype="multipart/form-data">
+           <ul class="actions">
+               <li title="Import CSV file">
+                   <button type="file" ng-click="openFileUpload()" class="btn btn-default waves-effect">
+                   <i class="zmdi zmdi-square-right" style="transform: scaleX(-1);"></i> IMPORT</button>
+               </li>
+               <input type="file" class="hidden" id="info-select-file" file-input="files" />
+           </ul>
+       </form>
+    </div>
+
+    <div class="card">
+        <div class="card-body table-responsive">
+            <table ng-table="subjectTable" class="table table-display-inline table-striped table-vmiddle">
+                <thead>
+                    <tr>
+                        <th> Subject code </th>
+                        <th> Subject Name </th>
+                        <th> Subject description </th>
+                    </tr>
+                </thead>
+                <tbody>
+                   <tr ng-repeat="data in dataList">
+                      <td width="20%" style="cursor:pointer;" data-ui-sref="career.update({id:data.id})" class="text-center">{{ data.subject_code }}</td>
+                      <td width="20%" style="cursor:pointer;" class="text-center"> {{ data.subject_name }}</td>
+                      <td width="20%" style="cursor:pointer;" class="text-center">{{ data.description }}</td>
+                   </tr>
+                </tbody>
+                <tfoot>
+                  <tr ng-if="dataList.length == 0">
+                      <td colspan="4">No record(s) found.</td>
+                  </tr>
+                </tfoot>
+            </table>
+        </div>
+    </div>
+</div>

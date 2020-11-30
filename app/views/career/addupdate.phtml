@@ -1,0 +1,121 @@
+<div class="container" data-ng-controller="CareerCtrl as cCtrl">
+    <div class="block-header p-l-0" style="margin-right: -12px;">
+        <h2><b>Career Setup > Opportunity</b></h2>
+        <ul class="actions">
+            <li>
+                <div class="form-group">
+                    <div class="fg-line">
+
+                </div>
+                </div>
+            </li>
+            <li title="Refresh">
+
+            </li>
+        </ul>
+    </div>
+      <div class="card" style="overflow : hidden;padding-top:20px;padding-bottom:20px;font-weight:normal;padding-right: 15px;">
+        <div class="col-sm-12">
+          <div class="col-sm-6">
+             <div id="recIdContainer" class="form-group m-b-30">
+                 <div class="fg-line">
+                     <label style="z-index:1024;">CATEGORY
+                         <span class="c-red">*</span>
+                     </label>
+                      <input id="recId" class="form-control bgm-white p-l-10" type="text" ng-model="form.opportunity.category" maxlength="20" placeholder="e.g. SOFTWARE ENGINEER"
+                      />
+                 </div>
+             </div>
+         </div>
+      </div>
+      <div class="col-sm-12">
+        <div class="col-sm-6">
+        </div>
+      </div>
+      <div class="col-sm-12">
+        <div class="col-sm-6 p-b-15">
+            <div id="branchNameContainer" class="form-group m-b-30">
+                <div class="fg-line">
+                    <label style="z-index:1024;"> TAGS
+                        <span class="c-red">*</span>
+                    </label>
+                      <textarea class="input-sm form-control fg-input" style="height:80px" maxlength="250" ng-model="form.opportunity.tags"  placeholder=" e.g. web,development,oop,programming,php,html...." uppercase-only no-special-char></textarea>
+                </div>
+            </div>
+        </div>
+      </div>
+        <div class="col-sm-12">
+            <div class="table-responsive">
+              <table class="table table-hover ">
+                  <thead>
+                      <tr>
+                          <th class="text-center" width="13%"></th>
+                          <th width="29%">Career Name</th>
+                          <th width="29%">POSITION</th>
+                          <th width="29%">SKILLS</th>
+                      </tr>
+                  </thead>
+                  <tbody>
+                      <tr >
+                          <td class="text-center">
+                              <ul class="actions" style="cursor:pointer;">
+                                  <li>
+                                      <a ng-click="onEditableVerify('add');" title="Save">
+                                          <i class="zmdi zmdi-save"></i>
+                                      </a>
+                                  </li>
+                              </ul>
+                          </td>
+                          <td>
+                              <div id="lineBusinessContainer">
+                                  <input class="form-control" type="text" uppercase-only
+                                      ng-model="add.careerName"  maxlength="30"
+                                  />
+                              </div>
+                          </td>
+                          <td>
+                          <div id="businessActivityContainer">
+                                  <input class="form-control"  type="text" uppercase-only
+                                      ng-model="add.position"  maxlength="30"
+                                  />
+                              </div>
+                          </td>
+                          <td>
+                            <div id="businessCapitalContainer">
+                                    <input class="form-control"  type="text" uppercase-only
+                                        ng-model="add.skills"  maxlength="30" currency-format
+                                    />
+                            </div>
+                          </td>
+                      </tr>
+                      <tr ng-repeat="data in careerList" ng-class="{ 'active': careerList.$edit }">
+                          <td class="text-center">
+                              <ul class="actions" style="cursor:pointer;">
+                                  <li>
+                                      <a ng-click="onEditableDelete($event);" data-id="{{$index}}"
+                                          title="Delete">
+                                          <i class="zmdi zmdi-delete"></i>
+                                      </a>
+                                  </li>
+                              </ul>
+                          </td>
+                          <td>
+                              <span>{{data.career_name}}</span>
+                          </td>
+                          <td>
+                              <span>{{data.position}}</span>
+                          </td>
+                          <td>
+                              <span>{{data.skills}}</span>
+                          </td>
+                      </tr>
+                  </tbody>
+              </table>
+            </div>
+        </div>
+        <div class ="col-sm-12">
+            <button class="btn btn-default bgm-white c-red z-depth-1 pull-right waves-effect waves-effect" title="Cancel" ui-sref="career.list">Cancel</button>
+            <button class="btn btn-default bgm-blue c-white z-depth-1 m-r-5  pull-right waves-effect waves-effect" title="SUBMIT" ng-click="addupdate('NEW')">SUBMIT</button>
+        </div>
+      </div>
+  </div>
